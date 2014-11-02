@@ -4,7 +4,7 @@ name: Keenan Brock
 email: keenan@thebrocks.net
 description: Reflecting on presentations and pictures
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: http://www.reflectivepixel.com # http://kbrock.google.io
+url: http://www.reflectivepixel.com # http://kbrock.github.io
 twitter_username: kbrock
 github_username:  kbrock
 
