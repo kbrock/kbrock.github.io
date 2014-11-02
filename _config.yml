@@ -1,5 +1,6 @@
 # Site settings
 title: Reflective Pixel
+name: Keenan Brock
 email: keenan@thebrocks.net
 description: Reflecting on presentations and pictures
 baseurl: "" # the subpath of your site, e.g. /blog/
