@@ -2,8 +2,7 @@
 layout: post
 title:  "Procastination?"
 date:   2014-11-01 18:43:47
-slide: 10
-vertical_center: false
+category: process
 ---
 
 I want to share my ideas, but it is tricky to organize a presentation:
