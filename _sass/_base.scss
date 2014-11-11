@@ -13,7 +13,7 @@ dl, dd, ol, ul, figure {
 /**
  * Basic styling
  */
-body {
+html {
     font-family: $base-font-family;
     font-size: $base-font-size;
     line-height: $base-line-height;
@@ -32,7 +32,7 @@ h1, h2, h3, h4, h5, h6,
 p, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
-    margin-bottom: $spacing-unit / 2;
+    margin-bottom: $base-line-height;
 }
 
 
@@ -98,7 +98,8 @@ a {
 
     &:hover {
         color: $text-color;
-        text-decoration: underline;
+        border-bottom: 2px solid #333;
+        xtext-decoration: underline;
     }
 }
 

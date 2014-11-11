@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
-  {% include head.html %}
+  <head>
+{% include head.html %}
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
+  </head>
   <body>
     {% include header.html %}
     <div class="page-content">
