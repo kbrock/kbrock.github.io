@@ -8,13 +8,14 @@ url: http://www.reflectivepixel.com # http://kbrock.github.io
 twitter_username: kbrock
 github_username:  kbrock
 
+img: http://dummyimage.com/120x120/ccc/333.png&text=img
 # Build settings
 markdown: kramdown
 kramdown:
   input: GFM
 #highlighter: pygments
 
-# avater:
+# avatar:
 # footer-links:
 #   dribbble:
 #   email: keenan@thebrocks.net
@@ -28,7 +29,7 @@ kramdown:
 # disqus: #kbrock?
 # google_analytics: #UA-123
 
-# may want different permalinks
+# may want different permalinks (include category?)
 permalink: /:title/
 version: 2.4.0
 sass:
@@ -43,3 +44,7 @@ exclude:
     - Gemfile.lock
     - LICENSE
     - README.md
+    - todo.md
+    - CNAME
+    - reflectivepixel.sublime-project
+    - reflectivepixel.sublime-workspace

@@ -21,9 +21,9 @@ html {
     color: $text-color;
     background-color: $background-color;
     -webkit-text-size-adjust: 100%;
+    xbackground-image: url(http://basehold.it/i/#{$spacing-unit / 1px});
+    xbackground-image: url(/24x28.png);
 }
-
-
 
 /**
  * Set `margin-bottom` to maintain vertical rhythm
@@ -32,10 +32,16 @@ h1, h2, h3, h4, h5, h6,
 p, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
+    font-size: $base-font-size;
+    line-height: $base-line-height;
     margin-bottom: $base-line-height;
 }
 
-
+h1, h2, h3, h4, h5, h6 {
+    font-size: $base-font-size * 1.5;
+    font-family: $header-font-family;
+    font-weight: 300;
+}
 
 /**
  * Images
@@ -56,6 +62,7 @@ figure > img {
 
 figcaption {
     font-size: $small-font-size;
+    line-height: $base-line-height;
 }
 
 
@@ -79,9 +86,9 @@ li {
 /**
  * Headings
  */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 300;
-}
+//h1, h2, h3, h4, h5, h6 {
+//    font-weight: 300;
+//}
 
 
 
@@ -91,6 +98,7 @@ h1, h2, h3, h4, h5, h6 {
 a {
     color: $brand-color;
     text-decoration: none;
+    padding-bottom: 5px;
 
     &:visited {
         color: darken($brand-color, 15%);
@@ -98,8 +106,8 @@ a {
 
     &:hover {
         color: $text-color;
-        border-bottom: 2px solid #333;
-        xtext-decoration: underline;
+        border-bottom: 5px solid rgba($brand-color, 0.20);
+        padding-bottom: 0px;
     }
 }
 
@@ -128,6 +136,7 @@ blockquote {
  */
 pre,
 code {
+    font-family: 'Incosolata', monospace;
     font-size: 15px;
     border: 1px solid $grey-color-light;
     border-radius: 3px;

@@ -1,32 +1,52 @@
 /**
  * Site header
  */
-.site-header {
-    margin-bottom: $base-line-height -4px;
-    border-top: 4px solid $grey-color-dark; /*rgba(0, 0, 0, 0.1);*/
+header {
+    margin-top: $base-line-height; /* have avoided margin-top everywhere else :( */
+    margin-bottom: $base-line-height - 1px;
     border-bottom: 1px solid $grey-color-light;
-    min-height: $base-line-height * 2;
-    padding-bottom: 14px;
+    min-height: $base-line-height * 5;
 
     // Positioning context for the mobile navigation icon
     position: relative;
-}
 
-.site-title {
-    padding-top: 3px;
-    padding-bottom: 2px;
-    font-size: $base-font-size * 3 ;
-    line-height: $base-line-height * 2;
-    letter-spacing: -1px;
-    margin-bottom: 0;
-    float: left;
+    .wrapper {
+        margin-top: 0;
+        margin-bottom: $base-line-height - 1px;
 
-    &,
-    &:visited {
-        color: $grey-color-dark;
+        div, h1, p {
+            margin-left: 0;
+            padding-left: 0;
+            -webkit-margin-before: 0px;
+            -webkit-margin-start: 0px;
+        }
     }
-    &:hover {
-        padding-bottom: 0px;
+
+    .site-title {
+            font-family: $header-font-family;
+            font-size: $base-font-size * 2.8;
+            padding-top: $base-line-height + 1px;
+            // note, note setting line-height, manually doing work
+            font-weight: 100;
+    }
+
+    .post-title {
+        font-size: $base-font-size *1.5;
+        padding-top: 5px;
+        margin-bottom: 0px;
+    }
+
+    .post-meta {
+        //note: bleeds into bottom
+        padding-top: 1px;
+        font-size: $base-font-size * 0.875;
+        color: $grey-color;
+        margin-bottom: $base-line-height - 1px - 6px;
+    }
+
+    img {
+        margin-right: $spacing-unit / 2;
+        float: left;
     }
 }
 
@@ -171,6 +191,10 @@
 /**
  * Page content
  */
+
+p, ul {
+    @include padded-line-height($base-font-size, 6px)
+}
 .page-content {
 }
 
@@ -183,61 +207,56 @@
 
 .post-list {
     margin-left: 0;
-    list-style: none;
 
     h2 {
+        //include padded-line-height(24px, 6px, - $base-line-height);
+        padding-top: 7px;
+        font-size: 24px;
+        line-height: $base-line-height;
+        margin-bottom: 0px;
         display: inline-block;
-        padding-top: 3px;
-        margin-bottom: $base-line-height - 3px;
+    }
+    .post-meta {
+        //note: bleeds into bottom
+        padding-top: 1px;
+        font-size: $base-font-size * 0.875;
+        color: $grey-color;
+        margin-bottom: $base-line-height - 1px - 8px;
     }
 }
 
 /* note: this starts 5px below */
-.post-meta {
-    padding-top: 3px;
-    font-size: $base-font-size * 0.875;
-    color: $grey-color;
-    margin-bottom: $base-line-height - 3px - 5px;
-}
-
+/*
 .post-link {
-    display: inline-block;
     font-size: 24px;
+    line-height: $base-line-height;
 }
 
-.presentation-link {
-    xdisplay: block;
+.reveal-link {
     font-size: 24px;
+    line-height: $base-line-height;
 }
-
+*/
 /**
  * Posts
  */
 .post-header {
 }
 
-.post-title {
-    padding-top: 4px;
-    font-size: $base-font-size * 1.5;
-    letter-spacing: -1px;
-    line-height: $base-line-height;
-    margin-bottom: 0;
+// .post-title {
+//     padding-top: 4px;
+//     font-size: $base-font-size * 1.5;
+//     letter-spacing: -1px;
+//     line-height: $base-line-height;
+//     margin-bottom: 0;
 
-    @include media-query($on-laptop) {
-        font-size: 36px;
-    }
-}
+//     @include media-query($on-laptop) {
+//         font-size: 36px;
+//     }
+// }
 
 .post-content {
 
-    p {
-        padding-top: 6px;
-        margin-bottom: $base-line-height - 6px;
-    }
-    ul {
-        padding-top: 6px;
-        margin-bottom: $base-line-height - 6px;
-    }
     h2 {
         font-size: 32px;
 
