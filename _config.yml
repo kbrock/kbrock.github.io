@@ -8,12 +8,15 @@ url: http://www.reflectivepixel.com # http://kbrock.github.io
 twitter_username: kbrock
 github_username:  kbrock
 
-img: http://dummyimage.com/120x120/ccc/333.png&text=img
+img: "http://dummyimage.com/120x120/ccc/333.png&amp;text=img"
+
 # Build settings
 markdown: kramdown
 kramdown:
   input: GFM
 #highlighter: pygments
+safe: true
+lsi: false
 
 # avatar:
 # footer-links:
