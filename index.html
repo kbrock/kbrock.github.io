@@ -2,14 +2,13 @@
 layout: default
 title: All
 ---
-
 <div class="home post-list">
 {% for post in site.posts %}
-  <div style="float: left; margin: 0px 20px">
-    <!--
-    <img src="{%if page.img%}{{page.img}}{% else %}{{site.img}}{% endif%}" style="display: block">
-  -->
-  <a class="{{post.layout}}-link" href="{{ post.url | prepend: site.baseurl }}"><img src="http://dummyimage.com/192x192/ccc/333.png&text=demo" style="display: block"></a>
+  <div class="post">
+    {% comment %}
+    <a class="{{post.layout}}-link" href="{{ post.url | prepend: site.baseurl }}"><img src="{%if post.img%}{{post.img}}{% else %}http://dummyimage.com/192x192/ccc/333.png&amp;text=demo{% endif%}"></a>
+    {% endcomment %}
+    {% for category in post.categories %}<span class="tag">{{ category }}</span>{% endfor %}{% for tag in post.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
     <h2>
       <a class="{{post.layout}}-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
     </h2>

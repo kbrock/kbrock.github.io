@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Procastination?"
-date:   2014-11-01 18:43:47
+title:  "Procastination"
+date:   "2014-11-01"
 category: process
 ---
 
