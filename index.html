@@ -3,7 +3,7 @@ layout: default
 title: All
 ---
 <div class="home post-list">
-{% for post in site.posts %}
+{% for post in site.posts reversed %}
   <div class="post">
     {% comment %}
     <a class="{{post.layout}}-link" href="{{ post.url | prepend: site.baseurl }}"><img src="{%if post.img%}{{post.img}}{% else %}http://dummyimage.com/192x192/ccc/333.png&amp;text=demo{% endif%}"></a>
