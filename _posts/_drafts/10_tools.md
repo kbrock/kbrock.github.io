@@ -1,7 +1,5 @@
-
-
-- view: youtube, user modifies timeline
 - data: events, datastore: calendar 
+- coding: gv -> svg+d3
 - dynamic calendar views data: events, view: calendar
     + algorithm to change backgroud color, icons, upper right icon, change text
 - reduction of events data: events, view: chat
@@ -9,7 +7,20 @@
     + feedback to manipulate the algorithm
 - chat websockets
 - tech: presentation resolve, angular, lua/phone
-- view: gv -> svg+d3
+- view:
+  + pamphlet, comic, book
+  + [wordsmith][] for book:
+  + pdf, kindle
+  + presentation
+  + chatterbot, twilio, game
+  + letter, choose your own adventure
+  + website
+  + dvd / youtube (ala dragon's lair)
+  + roguelike gain
+  + greenscreen.io
+- view: youtube, user modifies timeline
+
+[wordsmith]: https://github.com/tractical/wordsmith
 
 pure tech:
 
