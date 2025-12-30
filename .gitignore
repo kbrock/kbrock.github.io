@@ -1,6 +1,21 @@
-_site
-.bundle
-.sass-cache
-.ruby-version
+# Jekyll build output
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+# Ruby
+.bundle/
+vendor/
 Gemfile.lock
+
+# Sass
+.sass-cache/
+
+# OS/Editor
+.DS_Store
+*.swp
+*.swo
+
+# Local development
+.ruby-version
 
