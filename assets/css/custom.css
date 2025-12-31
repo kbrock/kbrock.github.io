@@ -1,25 +1,133 @@
-/* Gray/Steel Blue Mondrian-inspired theme */
+/* Gray/Steel Blue Mondrian-inspired theme for thebrocks.net */
+
 :root {
-  --pico-primary: #4A6572;
-  --pico-primary-hover: #1C3A4B;
-  --pico-color: #232323;
-  --pico-background-color: #F5F5F5;
-  --pico-border-color: #232323;
+  /* Color palette */
+  --steel-blue: #4A6572;
+  --steel-dark: #1C3A4B;
+  --gray-light: #F5F5F5;
+  --gray-medium: #E0E0E0;
+  --near-black: #232323;
+  --white: #FFFFFF;
 }
 
-/* Bold Mondrian-style borders */
+/* Light theme overrides */
+[data-theme="light"],
+:root:not([data-theme="dark"]) {
+  /* Primary colors */
+  --pico-primary: var(--steel-blue);
+  --pico-primary-hover: var(--steel-dark);
+  --pico-primary-focus: rgba(74, 101, 114, 0.25);
+  --pico-primary-background: var(--steel-blue);
+  --pico-primary-hover-background: var(--steel-dark);
+  
+  /* Text and background */
+  --pico-color: var(--near-black);
+  --pico-background-color: var(--gray-light);
+  --pico-card-background-color: var(--white);
+  
+  /* Borders - Mondrian bold black lines */
+  --pico-border-color: var(--near-black);
+  
+  /* Typography */
+  --pico-h1-color: var(--steel-dark);
+  --pico-h2-color: var(--steel-dark);
+  --pico-h3-color: var(--steel-blue);
+  --pico-h4-color: var(--steel-blue);
+  
+  /* Links */
+  --pico-text-decoration: none;
+}
+
+/* Typography refinements */
+:root {
+  --pico-font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --pico-line-height: 1.6;
+  --pico-typography-spacing-vertical: 1.5rem;
+}
+
+/* Vertical rhythm */
+main.container {
+  max-width: 720px;
+}
+
 article {
-  border-left: 4px solid var(--pico-primary);
-  padding-left: 1rem;
+  margin-bottom: 2rem;
 }
 
-/* Code block styling */
+article header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--near-black);
+}
+
+article header h1,
+article header h2 {
+  margin-bottom: 0.5rem;
+}
+
+article header p {
+  color: var(--steel-blue);
+  margin-bottom: 0;
+}
+
+/* Mondrian-style accents */
+article {
+  border-left: 4px solid var(--steel-blue);
+  padding-left: 1.5rem;
+  margin-left: 0;
+}
+
+/* Navigation styling */
+header.container nav {
+  border-bottom: 3px solid var(--near-black);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Footer styling */
+footer.container {
+  margin-top: 3rem;
+}
+
+footer.container hr {
+  border-top: 2px solid var(--near-black);
+}
+
+/* Code blocks */
 .highlight {
   border-radius: 4px;
-  margin: 1.5em 0;
+  margin: 1.5rem 0;
+  border-left: 4px solid var(--steel-blue);
 }
 
 .highlight pre {
-  padding: 1em;
+  padding: 1rem;
   overflow-x: auto;
+  margin: 0;
+}
+
+/* Inline code */
+code:not(pre code) {
+  background: var(--gray-medium);
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* Blockquotes - Mondrian accent */
+blockquote {
+  border-left: 4px solid var(--steel-dark);
+  background: var(--white);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+/* Category/tag styling */
+.category {
+  background: var(--steel-blue);
+  color: var(--white);
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  margin-left: 0.5rem;
 }
