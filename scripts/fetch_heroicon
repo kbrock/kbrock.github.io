@@ -1,0 +1,8 @@
+#!/bin/bash
+# Download a Heroicon to _icons/
+# Usage: scripts/fetch_heroicon heart
+#        scripts/fetch_heroicon code-bracket
+
+icon=${1:?Please specify an icon name}
+curl -sO "https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/24/outline/${icon}.svg"
+echo "Downloaded ${icon}.svg"

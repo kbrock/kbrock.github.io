@@ -1,0 +1,22 @@
+# Icon attribution
+# Add entries here when adding icons to _icons/
+
+code-bracket:
+  source: Heroicons
+  url: https://heroicons.com
+  license: MIT
+
+cpu-chip:
+  source: Heroicons
+  url: https://heroicons.com
+  license: MIT
+
+heart:
+  source: Heroicons
+  url: https://heroicons.com
+  license: MIT
+
+home:
+  source: Heroicons
+  url: https://heroicons.com
+  license: MIT

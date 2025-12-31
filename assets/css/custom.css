@@ -122,12 +122,32 @@ blockquote {
   margin: 1.5rem 0;
 }
 
-/* Category/tag styling */
-.category {
-  background: var(--steel-blue);
-  color: var(--white);
+/* Tag styling */
+.tag {
+  background: var(--gray-medium);
+  color: var(--near-black);
   padding: 0.2rem 0.6rem;
   border-radius: 3px;
   font-size: 0.85rem;
-  margin-left: 0.5rem;
+  margin-left: 0.25rem;
+  text-decoration: none;
+}
+
+a.tag:hover {
+  background: var(--steel-blue);
+  color: var(--white);
+}
+
+/* Icon styling */
+.icon {
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: -0.15em;
+  stroke: currentColor;
+  fill: none;
+}
+
+h1 .icon {
+  width: 1em;
+  height: 1em;
 }

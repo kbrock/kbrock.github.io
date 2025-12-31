@@ -1,6 +1,6 @@
 ---
 title: Hello World
-category: Ruby
+tags: [life, website, ruby, swift]
 ---
 
 This is a test post to verify styling. It will be removed before launch.
