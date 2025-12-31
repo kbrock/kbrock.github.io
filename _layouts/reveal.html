@@ -1,0 +1,77 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  
+  <!-- Reveal.js 5.x -->
+  <link rel="stylesheet" href="{{ '/assets/reveal/dist/reset.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/reveal/dist/reveal.css' | relative_url }}">
+  
+  <!-- Code highlighting - server-side Rouge -->
+  <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url }}">
+  
+  <!-- Steel blue theme -->
+  <style>
+    :root {
+      --r-background-color: #1C3A4B;
+      --r-main-color: #F5F5F5;
+      --r-heading-color: #F5F5F5;
+      --r-link-color: #4A6572;
+      --r-link-color-hover: #6B8A99;
+    }
+    .reveal {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    .reveal h1, .reveal h2, .reveal h3 {
+      text-transform: none;
+      font-weight: 600;
+    }
+    .reveal pre {
+      width: 100%;
+      font-size: 0.65em;
+    }
+    /* Monokai background for code */
+    .reveal .highlight {
+      background: #272822;
+      border-radius: 4px;
+      padding: 0.5em;
+    }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!--
+        Slide separators (in your markdown):
+        --- = next slide (right arrow)
+        ++ = open vertical sub-section (down arrow)
+        double dash = close vertical sub-section (Kramdown converts to emdash)
+      -->
+      <section>
+        {{ content 
+          | replace: "<hr />", "</section><section>" 
+          | replace: "<p>++</p>", "<section>" 
+          | replace: "<p>–</p>", "</section>"
+        }}
+      </section>
+    </div>
+  </div>
+
+  <script src="{{ '/assets/reveal/dist/reveal.js' | relative_url }}"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      history: true,
+      controls: true,
+      progress: true,
+      center: {{ page.center | default: true }},
+      transition: '{{ page.transition | default: "slide" }}'
+    });
+  </script>
+</body>
+</html>

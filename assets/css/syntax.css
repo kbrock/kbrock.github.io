@@ -1,3 +1,20 @@
+/* Monokai base */
+.highlight {
+  background: #272822;
+  color: #f8f8f2;
+  border-radius: 4px;
+  padding: 0.5em;
+  overflow-x: auto;
+}
+.highlight pre {
+  margin: 0;
+  background: transparent;
+  color: inherit;
+}
+.highlight code {
+  background: transparent;
+  color: inherit;
+}
 .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
 .highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {

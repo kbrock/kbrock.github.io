@@ -86,6 +86,31 @@ cd _icons && ../scripts/fetch_heroicon heart
 --near-black: #232323;
 ```
 
+## Writing Guidelines (from 2014 goals)
+
+- Only one concept per post
+- Only one-two pages per post
+- Max one new technology per post
+- Max one new category of metadata per post
+
+## Future Ideas
+
+- **Mermaid diagrams**: Inline flowcharts in markdown (see `_archive/_posts/_drafts/00_flow.md` for old dot syntax experiments)
+- **D3 visualizations**: Simplify old complex JS approach, possibly with AI help
+- **Draft inbox**: Single document for half-baked ideas (like old `_archive/_posts/_drafts/000_inbox.md`)
+- **Presentation ↔ Post**: Same content, different layouts?
+
+## Reveal.js Presentations
+
+Use `layout: reveal` in front matter. Slide separators:
+- `---` = next slide (right arrow)
+- `++` = open vertical sub-section (down arrow)  
+- `--` = close vertical sub-section (Kramdown converts to emdash)
+
+Future:
+- Speaker notes (`Note:` syntax)
+- Custom themes leveraging site CSS
+
 ## Pending Work
 
-See `spec.md` for full task list. Next: Phase 7 (test, deploy, verify).
+See `spec.md` for full task list.
