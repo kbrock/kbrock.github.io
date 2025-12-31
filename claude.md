@@ -45,14 +45,40 @@ Tag pages live in `tags/*.md` with layout `tag`.
 
 ## Icons Workflow
 
-Icons are SVG sprites. To add a new icon:
+Icons are SVG sprites stored in `_icons/`. Prefer **solid/filled** versions.
+
+### Icon Sources
+
+| Type | Source | URL |
+|------|--------|-----|
+| Brand logos | Simple Icons | https://simpleicons.org |
+| UI icons (solid) | Heroicons | https://heroicons.com |
+
+### Fetching Icons
 
 ```bash
 cd _icons
-../scripts/fetch_heroicon icon-name    # Download from Heroicons
-# Add to _data/icons.yml for attribution
-ruby ../scripts/build_icons.rb         # Regenerate sprite
+
+# Simple Icons (brands: ruby, swift, claude, github, manageiq, etc.)
+curl -s "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/ICONNAME.svg" -o ICONNAME.svg
+
+# Heroicons solid (UI: home, heart, etc.)
+curl -s "https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/24/solid/ICONNAME.svg" -o ICONNAME.svg
+
+# Rebuild sprite after adding
+ruby scripts/build_icons.rb
+cp _includes/icons.svg assets/icons.svg
 ```
+
+### Current Icons
+
+- **Brands (Simple Icons)**: claude, facebook, github, ibm, instagram, jekyll, linkedin, manageiq, redhat, ruby, swift, x
+- **UI (Heroicons solid)**: heart, home
+- **Legacy (Heroicons outline)**: code-bracket, cpu-chip
+
+### Tag to Icon Mapping
+
+Edit `_data/tag_icons.yml` to map tags to icons.
 
 Use in templates: `{% include icon.html name="icon-name" %}`
 

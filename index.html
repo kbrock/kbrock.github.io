@@ -2,8 +2,6 @@
 layout: default
 title: Home
 ---
-<h1>Articles</h1>
-
 {% for post in site.posts %}
 <article>
   <header>
@@ -12,9 +10,12 @@ title: Home
       <time datetime="{{ post.date | date_to_xmlschema }}">
         {{ post.date | date: "%B %d, %Y" }}
       </time>
-      {% if post.category %}
-        &middot; {{ post.category }}
-      {% endif %}
+      {% for tag in post.tags %}
+        {% assign tag_icon = site.data.tag_icons[tag] | default: "heart" %}
+        <a href="{{ '/tags/' | append: tag | append: '/' | relative_url }}" class="tag" title="{{ tag }}">
+          <svg class="icon"><use href="{{ '/assets/icons.svg#icon-' | append: tag_icon | relative_url }}"></use></svg>
+        </a>
+      {% endfor %}
     </p>
   </header>
   {% if post.excerpt %}

@@ -1,41 +1,48 @@
-/* Gray/Steel Blue Mondrian-inspired theme for thebrocks.net */
+/* Minimalist theme for thebrocks.net */
 
 :root {
-  /* Color palette */
-  --steel-blue: #4A6572;
-  --steel-dark: #1C3A4B;
-  --gray-light: #F5F5F5;
-  --gray-medium: #E0E0E0;
-  --near-black: #232323;
-  --white: #FFFFFF;
+  /* Simplified color palette */
+  --bg-color: #F5F5F5;
+  --teal: #0d9488;
+  --teal-dark: #0f766e;
 }
 
 /* Light theme overrides */
 [data-theme="light"],
 :root:not([data-theme="dark"]) {
-  /* Primary colors */
-  --pico-primary: var(--steel-blue);
-  --pico-primary-hover: var(--steel-dark);
-  --pico-primary-focus: rgba(74, 101, 114, 0.25);
-  --pico-primary-background: var(--steel-blue);
-  --pico-primary-hover-background: var(--steel-dark);
+  /* Text color - unified gray */
+  --pico-color: #666666;
   
-  /* Text and background */
-  --pico-color: var(--near-black);
-  --pico-background-color: var(--gray-light);
-  --pico-card-background-color: var(--white);
+  /* Links - same as text, teal on hover */
+  --pico-primary: var(--pico-color);
+  --pico-primary-hover: var(--teal);
+  --pico-primary-focus: rgba(13, 148, 136, 0.25);
+  --pico-primary-background: var(--teal);
+  --pico-primary-hover-background: var(--teal-dark);
+  --pico-primary-underline: var(--teal);
   
-  /* Borders - Mondrian bold black lines */
-  --pico-border-color: var(--near-black);
+  /* Background - unified */
+  --pico-background-color: var(--bg-color);
+  --pico-card-background-color: var(--bg-color);
+  --pico-card-sectioning-background-color: var(--bg-color);
+  --pico-box-shadow: none;
+  --pico-card-box-shadow: none;
   
-  /* Typography */
-  --pico-h1-color: var(--steel-dark);
-  --pico-h2-color: var(--steel-dark);
-  --pico-h3-color: var(--steel-blue);
-  --pico-h4-color: var(--steel-blue);
+  /* Typography - all match text color */
+  --pico-h1-color: var(--pico-color);
+  --pico-h2-color: var(--pico-color);
+  --pico-h3-color: var(--pico-color);
+  --pico-h4-color: var(--pico-color);
+  --pico-muted-color: var(--pico-color);
   
-  /* Links */
-  --pico-text-decoration: none;
+  /* Links - thin underline */
+  --pico-text-decoration: underline;
+}
+
+/* Thin underlines */
+a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 
 /* Typography refinements */
@@ -45,59 +52,96 @@
   --pico-typography-spacing-vertical: 1.5rem;
 }
 
-/* Vertical rhythm */
-main.container {
-  max-width: 720px;
-}
+/* Content width - let Pico handle container alignment */
 
-article {
+/* Page title */
+main.container > h1 {
+  font-size: 1.5rem;
+  font-weight: normal;
   margin-bottom: 2rem;
 }
 
+/* Articles - clean, no borders */
+article {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #ddd;
+}
+
+article:last-child {
+  border-bottom: none;
+}
+
 article header {
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid var(--near-black);
+  margin-bottom: 1rem;
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 article header h1,
 article header h2 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 article header p {
-  color: var(--steel-blue);
+  color: var(--pico-color);
   margin-bottom: 0;
 }
 
-/* Mondrian-style accents */
-article {
-  border-left: 4px solid var(--steel-blue);
-  padding-left: 1.5rem;
-  margin-left: 0;
+/* Header styling - left aligned */
+header.container hgroup {
+  margin-bottom: 0.5rem;
 }
 
-/* Navigation styling */
+header.container hgroup h1 {
+  margin-bottom: 0.25rem;
+}
+
+header.container hgroup p {
+  color: var(--pico-color);
+  margin-bottom: 0.5rem;
+}
+
 header.container nav {
-  border-bottom: 3px solid var(--near-black);
-  padding-bottom: 1rem;
   margin-bottom: 2rem;
 }
 
-/* Footer styling */
+/* Social links in header - left aligned, tight */
+.social-links {
+  display: inline-flex;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+}
+
+.social-links a {
+  color: var(--pico-color);
+  transition: color 0.2s ease;
+}
+
+.social-links a:hover {
+  color: var(--teal);
+}
+
+.social-links .icon {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+  stroke: none;
+}
+
+/* Footer - minimal */
 footer.container {
   margin-top: 3rem;
 }
 
 footer.container hr {
-  border-top: 2px solid var(--near-black);
+  display: none;
 }
 
 /* Code blocks */
 .highlight {
   border-radius: 4px;
   margin: 1.5rem 0;
-  border-left: 4px solid var(--steel-blue);
 }
 
 .highlight pre {
@@ -108,46 +152,47 @@ footer.container hr {
 
 /* Inline code */
 code:not(pre code) {
-  background: var(--gray-medium);
+  background: #e5e5e5;
   padding: 0.15rem 0.4rem;
   border-radius: 3px;
   font-size: 0.9em;
 }
 
-/* Blockquotes - Mondrian accent */
+/* Blockquotes */
 blockquote {
-  border-left: 4px solid var(--steel-dark);
-  background: var(--white);
-  padding: 1rem 1.5rem;
+  border-left: 2px solid #ddd;
+  padding: 0.5rem 1.5rem;
   margin: 1.5rem 0;
+  color: var(--pico-color);
 }
 
 /* Tag styling */
 .tag {
-  background: var(--gray-medium);
-  color: var(--near-black);
-  padding: 0.2rem 0.6rem;
-  border-radius: 3px;
+  color: var(--pico-color);
+  padding: 0;
   font-size: 0.85rem;
-  margin-left: 0.25rem;
+  margin-left: 0.15rem;
   text-decoration: none;
 }
 
-a.tag:hover {
-  background: var(--steel-blue);
-  color: var(--white);
+.tag:hover {
+  color: var(--teal);
 }
 
 /* Icon styling */
 .icon {
-  width: 1.2em;
-  height: 1.2em;
-  vertical-align: -0.15em;
-  stroke: currentColor;
-  fill: none;
-}
-
-h1 .icon {
   width: 1em;
   height: 1em;
+  vertical-align: -0.1em;
+  fill: currentColor;
+  stroke: none;
+}
+
+/* Tag icons */
+.tag .icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.1em;
+  fill: currentColor;
+  stroke: none;
 }

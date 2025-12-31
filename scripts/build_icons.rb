@@ -15,17 +15,20 @@ ICONS_DIR = File.expand_path("../_icons", __dir__)
 SPRITE_OUTPUT = File.expand_path("../_includes/icons.svg", __dir__)
 
 def svg_to_symbol(icon_name, svg_content)
+  # Extract viewBox from original SVG
+  viewbox = svg_content[/viewBox="([^"]*)"/, 1] || "0 0 24 24"
+  
   # Extract path content, normalize for sprite
   inner = svg_content
     .gsub(/<\?xml[^>]*\?>\s*/m, '')
     .gsub(/<svg[^>]*>\s*/m, '')
     .gsub(/\s*<\/svg>\s*/m, '')
-    .gsub(/stroke="#[^"]*"/, 'stroke="currentColor"')
-    .gsub(/fill="#[^"]*"/, 'fill="currentColor"')
+    .gsub(/fill="#[^"]*"/, 'fill="currentColor"')  # Replace hardcoded fills
     .gsub(/\s+/, ' ')
     .strip
 
-  %Q{  <symbol id="icon-#{icon_name}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">#{inner}</symbol>}
+  # Use fill="currentColor" for solid icons (Simple Icons style)
+  %Q{  <symbol id="icon-#{icon_name}" viewBox="#{viewbox}">#{inner}</symbol>}
 end
 
 def build_sprite

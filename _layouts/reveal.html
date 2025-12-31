@@ -8,50 +8,57 @@ layout: null
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }} | {{ site.title }}</title>
   
+  <!-- Pico.css for theme variables -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+  
   <!-- Reveal.js 5.x -->
   <link rel="stylesheet" href="{{ '/assets/reveal/dist/reset.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/reveal/dist/reveal.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/reveal/dist/theme/simple.css' | relative_url }}">
   
   <!-- Code highlighting - server-side Rouge -->
   <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url }}">
   
-  <!-- Steel blue theme -->
+  <!-- Map Pico variables to Reveal variables -->
   <style>
     :root {
-      --r-background-color: #1C3A4B;
-      --r-main-color: #F5F5F5;
-      --r-heading-color: #F5F5F5;
-      --r-link-color: #4A6572;
-      --r-link-color-hover: #6B8A99;
+      --r-background-color: var(--pico-background-color);
+      --r-main-font: var(--pico-font-family);
+      /* --r-main-color: var(--pico-h1-color); */
+      --r-main-color: var(--pico-color);
+      --r-heading-font: var(--pico-font-family);
+      --r-heading-color: var(--pico-h1-color);
+      --r-link-color: var(--pico-primary);
+      --r-link-color-dark: var(--pico-primary-hover);
+      --r-link-color-hover: var(--pico-primary-hover);
+      --r-selection-background-color: var(--pico-primary-hover);
     }
-    .reveal {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    }
-    .reveal h1, .reveal h2, .reveal h3 {
+    
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
       text-transform: none;
       font-weight: 600;
     }
+    
     .reveal pre {
       width: 100%;
-      font-size: 0.65em;
+      font-size: 0.55em;
+      box-shadow: none;
     }
-    /* Monokai background for code */
+    
     .reveal .highlight {
-      background: #272822;
       border-radius: 4px;
-      padding: 0.5em;
+    }
+    .reveal .highlight pre {
+      background: transparent;
+      box-shadow: none;
+      margin: 0;
     }
   </style>
 </head>
 <body>
   <div class="reveal">
     <div class="slides">
-      <!--
-        Slide separators (in your markdown):
-        --- = next slide (right arrow)
-        ++ = open vertical sub-section (down arrow)
-        double dash = close vertical sub-section (Kramdown converts to emdash)
-      -->
       <section>
         {{ content 
           | replace: "<hr />", "</section><section>" 
