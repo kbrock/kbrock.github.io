@@ -1,0 +1,25 @@
+/* Gray/Steel Blue Mondrian-inspired theme */
+:root {
+  --pico-primary: #4A6572;
+  --pico-primary-hover: #1C3A4B;
+  --pico-color: #232323;
+  --pico-background-color: #F5F5F5;
+  --pico-border-color: #232323;
+}
+
+/* Bold Mondrian-style borders */
+article {
+  border-left: 4px solid var(--pico-primary);
+  padding-left: 1rem;
+}
+
+/* Code block styling */
+.highlight {
+  border-radius: 4px;
+  margin: 1.5em 0;
+}
+
+.highlight pre {
+  padding: 1em;
+  overflow-x: auto;
+}

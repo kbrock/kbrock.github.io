@@ -1,0 +1,42 @@
+title: thebrocks.net
+description: Writing about Ruby, Swift, AI, and Health
+url: "https://thebrocks.net"
+baseurl: ""
+
+author:
+  name: Keenan Brock
+  email: keenan@thebrocks.net
+  github: kbrock
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:title/
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Sass
+sass:
+  style: compressed
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - spec.md
+  - _archive
+  - vendor
+  - .bundle
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
