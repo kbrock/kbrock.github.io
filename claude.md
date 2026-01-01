@@ -1,152 +1,69 @@
 # Claude Code Context
 
-## Project Overview
+Purpose: Architecture and context for AI assistants modifying this codebase.
 
-Static blog for thebrocks.net built with Jekyll, hosted on GitHub Pages.
-
-## Tech Stack
-
-- **Jekyll 4.3** - Static site generator
-- **Pico.css** - Minimal CSS framework (via CDN)
-- **Rouge** - Syntax highlighting (Monokai theme)
-- **GitHub Actions** - Build and deploy
+For content creation, see README.md.
+For technology decisions, see spec.md.
+For task tracking, see TODO.md.
 
 ## Ruby Environment
 
-```bash
-source /usr/local/share/chruby/chruby.sh && chruby 3.3.4
-```
+    source /usr/local/share/chruby/chruby.sh && chruby 3.3.4
 
-## Key Files
+## Asset Fingerprinting
 
-| File | Purpose |
-|------|---------|
-| `_config.yml` | Jekyll configuration |
-| `_layouts/default.html` | Base layout with Pico.css |
-| `_layouts/post.html` | Individual post layout |
-| `_layouts/tag.html` | Tag index page layout |
-| `_includes/icon.html` | Icon helper: `{% include icon.html name="ruby" %}` |
-| `_includes/icons.svg` | Generated SVG sprite (don't edit directly) |
-| `assets/css/custom.css` | Theme overrides (steel blue Mondrian) |
-| `assets/css/syntax.css` | Monokai code highlighting |
+CSS and icons are fingerprinted using jekyll-minibundle's `ministamp` tag.
 
-## Content Structure
+Use absolute paths with leading slash: `/assets/css/theme.css` not `assets/css/theme.css`.
 
-Posts use **tags** (not categories). Multiple tags per post:
+## Layouts
 
-```yaml
----
-title: My Post
-tags: [life, website, jekyll]
----
-```
+| Layout       | Extends | Notes                            |
+| ------------ | ------- | -------------------------------- |
+| default.html | -       | Base layout, sets icons_path     |
+| post.html    | default | Blog posts                       |
+| tag.html     | default | Tag listing pages                |
+| reveal.html  | -       | Standalone, sets own icons_path  |
 
-Tag pages live in `tags/*.md` with layout `tag`.
+Note: reveal.html does not extend default.html. Changes to head, CSS includes, or icons_path in one may need to be mirrored in the other.
 
-## Icons Workflow
+## Includes
 
-Icons are SVG sprites stored in `_icons/`. Prefer **solid/filled** versions.
+| Include           | Used By              | Notes                         |
+| ----------------- | -------------------- | ----------------------------- |
+| header.html       | default              | Site header with social icons |
+| footer.html       | default              | Site footer                   |
+| post-summary.html | index.html, tag.html | Shared post listing           |
 
-### Icon Sources
+## CSS Variables
 
-| Type | Source | URL |
-|------|--------|-----|
-| Brand logos | Simple Icons | https://simpleicons.org |
-| UI icons (solid) | Heroicons | https://heroicons.com |
+theme.css overrides Pico variables and maps Reveal.js variables.
 
-### Fetching Icons
+Theme selectors:
+- Light: [data-theme=light], :root:not([data-theme=dark])
+- Dark: [data-theme=dark]
 
-```bash
-cd _icons
+Reveal.js mapping in :root:
 
-# Simple Icons (brands: ruby, swift, claude, github, manageiq, etc.)
-curl -s "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/ICONNAME.svg" -o ICONNAME.svg
+    --r-background-color: var(--pico-background-color);
+    --r-main-color: var(--pico-color);
+    --r-link-color: var(--pico-primary);
 
-# Heroicons solid (UI: home, heart, etc.)
-curl -s "https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/24/solid/ICONNAME.svg" -o ICONNAME.svg
+## Icons
 
-# Rebuild sprite after adding
-ruby scripts/build_icons.rb
-cp _includes/icons.svg assets/icons.svg
-```
+icons.svg is an external file (not inline). The `ministamp` tag generates the fingerprinted path, and we capture it into a variable so includes can use it:
 
-### Current Icons
+    {% capture icons_path %}{% ministamp _assets/icons.svg /assets/icons.svg %}{% endcapture %}
 
-- **Brands (Simple Icons)**: claude, facebook, github, ibm, instagram, jekyll, linkedin, manageiq, redhat, ruby, swift, x
-- **UI (Heroicons solid)**: heart, home
-- **Legacy (Heroicons outline)**: code-bracket, cpu-chip
+This must be done in each standalone layout (default.html, reveal.html). Includes like post-summary.html expect `icons_path` to exist.
 
-### Tag to Icon Mapping
+## Notes
 
-Edit `_data/tag_icons.yml` to map tags to icons.
+- syntax.css duplicates Rouge Monokai theme locally (allows customization)
+- Versioned vendor files (pico-2.0.6.css, reveal-5.1/) go in assets/
+- Fingerprinted files go in _assets/
 
-Use in templates: `{% include icon.html name="icon-name" %}`
+## Style Preferences
 
-## Common Commands
-
-```bash
-# Local development
-bundle exec jekyll serve
-
-# Build icons after adding to _icons/
-ruby scripts/build_icons.rb
-
-# Fetch a Heroicon
-cd _icons && ../scripts/fetch_heroicon heart
-```
-
-## Design Decisions
-
-- **Tags over categories**: Flat hierarchy, posts can have multiple
-- **SVG sprite**: Icons defined once, referenced with `<use>`
-- **No icon library download**: Just copy the few SVGs needed
-- **Pico.css via CDN**: Minimal footprint, no build step
-- **Server-side highlighting**: Rouge, no JS needed
-
-## Color Palette
-
-```css
---steel-blue: #4A6572;
---steel-dark: #1C3A4B;
---gray-light: #F5F5F5;
---near-black: #232323;
-```
-
-## Writing Guidelines (from 2014 goals)
-
-- Only one concept per post
-- Only one-two pages per post
-- Max one new technology per post
-- Max one new category of metadata per post
-
-## Past Goals (2014)
-
-Original deliverables for a presentation workflow project:
-- A workflow for moving ideas from concept to a presentation
-- A post to describe each of the workflow steps
-- A list of tools for each of the workflow steps
-- A classification scheme to group posts together
-- Tools for expressing ideas (e.g. graphs, powerpoints, prose)
-- Presentations
-
-## Future Ideas
-
-- **Mermaid diagrams**: Inline flowcharts in markdown (see `_archive/_posts/_drafts/00_flow.md` for old dot syntax experiments)
-- **D3 visualizations**: Simplify old complex JS approach, possibly with AI help
-- **Draft inbox**: Single document for half-baked ideas (like old `_archive/_posts/_drafts/000_inbox.md`)
-- **Presentation ↔ Post**: Same content, different layouts? (one being a presentation and the other a blog post)
-
-## Reveal.js Presentations
-
-Use `layout: reveal` in front matter. Slide separators:
-- `---` = next slide (right arrow)
-- `++` = open vertical sub-section (down arrow)  
-- `--` = close vertical sub-section (Kramdown converts to emdash)
-
-Future:
-- Speaker notes (`Note:` syntax)
-- Custom themes leveraging site CSS
-
-## Pending Work
-
-See `spec.md` for full task list.
+- Tables should have spaces for readability
+- Purpose statement at top of each documentation file

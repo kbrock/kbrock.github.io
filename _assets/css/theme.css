@@ -1,0 +1,263 @@
+/* Minimalist theme for thebrocks.net */
+
+/* Typography refinements - shared across themes */
+:root {
+  --pico-font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --pico-line-height: 1.6;
+  --pico-typography-spacing-vertical: 1.5rem;
+  --pico-text-underline-offset: 2px;
+  
+  /* Reveal.js - map to Pico variables */
+  --r-background-color: var(--pico-background-color);
+  --r-main-font: var(--pico-font-family);
+  --r-main-color: var(--pico-color);
+  --r-heading-font: var(--pico-font-family);
+  --r-heading-color: var(--pico-h1-color);
+  --r-link-color: var(--pico-primary);
+  --r-link-color-dark: var(--pico-primary-hover);
+  --r-link-color-hover: var(--pico-primary-hover);
+  --r-selection-background-color: var(--pico-primary-hover);
+}
+
+/* Light theme */
+[data-theme=light],
+:root:not([data-theme=dark]) {
+  /* Custom colors */
+  --teal: #0d9488;
+  --teal-dark: #0f766e;
+  
+  /* Text color - unified gray */
+  --pico-color: #666666;
+  
+  /* Links - same as text, teal on hover */
+  --pico-primary: var(--pico-color);
+  --pico-primary-hover: var(--teal);
+  --pico-primary-focus: rgba(13, 148, 136, 0.25);
+  --pico-primary-background: var(--teal);
+  --pico-primary-hover-background: var(--teal-dark);
+  --pico-primary-underline: var(--teal);
+  
+  /* Background - unified */
+  --pico-background-color: #F5F5F5;
+  --pico-card-background-color: #F5F5F5;
+  --pico-card-sectioning-background-color: #F5F5F5;
+  --pico-box-shadow: none;
+  --pico-card-box-shadow: none;
+  
+  /* Typography - all match text color */
+  --pico-h1-color: var(--pico-color);
+  --pico-h2-color: var(--pico-color);
+  --pico-h3-color: var(--pico-color);
+  --pico-h4-color: var(--pico-color);
+  --pico-muted-color: var(--pico-color);
+  
+  /* Links - thin underline */
+  --pico-text-decoration: underline;
+}
+
+/* Dark theme */
+[data-theme=dark] {
+  /* Custom colors */
+  --teal: #2dd4bf;
+  --teal-dark: #14b8a6;
+  
+  /* Text color - light gray */
+  --pico-color: #c9c9c9;
+  
+  /* Links - same as text, teal on hover */
+  --pico-primary: var(--pico-color);
+  --pico-primary-hover: var(--teal);
+  --pico-primary-focus: rgba(45, 212, 191, 0.25);
+  --pico-primary-background: var(--teal);
+  --pico-primary-hover-background: var(--teal-dark);
+  --pico-primary-underline: var(--teal);
+  
+  /* Background - dark */
+  --pico-background-color: #1a1a1a;
+  --pico-card-background-color: #1a1a1a;
+  --pico-card-sectioning-background-color: #1a1a1a;
+  --pico-box-shadow: none;
+  --pico-card-box-shadow: none;
+  
+  /* Typography - all match text color */
+  --pico-h1-color: var(--pico-color);
+  --pico-h2-color: var(--pico-color);
+  --pico-h3-color: var(--pico-color);
+  --pico-h4-color: var(--pico-color);
+  --pico-muted-color: var(--pico-color);
+  
+  /* Links - thin underline */
+  --pico-text-decoration: underline;
+}
+
+/* Thin underlines */
+a {
+  text-decoration-thickness: 1px;
+}
+
+/* Content width - let Pico handle container alignment */
+
+/* Page title */
+main.container > h1 {
+  font-size: 1.5rem;
+  font-weight: normal;
+  margin-bottom: 2rem;
+}
+
+/* Articles - clean, no borders */
+article {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--pico-muted-border-color);
+}
+
+article:last-child {
+  border-bottom: none;
+}
+
+article header {
+  margin-bottom: 1rem;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+article header h1,
+article header h2 {
+  margin-bottom: 0.25rem;
+}
+
+article header p {
+  color: var(--pico-color);
+  margin-bottom: 0;
+}
+
+/* Header styling - left aligned */
+header.container hgroup {
+  margin-bottom: 0.5rem;
+}
+
+header.container hgroup h1 {
+  margin-bottom: 0.25rem;
+}
+
+header.container hgroup p {
+  color: var(--pico-color);
+  margin-bottom: 0.5rem;
+}
+
+header.container nav {
+  margin-bottom: 2rem;
+}
+
+/* Social links in header - left aligned, tight */
+.social-links {
+  display: inline-flex;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+}
+
+.social-links a {
+  color: var(--pico-color);
+  transition: color var(--pico-transition);
+}
+
+.social-links a:hover {
+  color: var(--teal);
+}
+
+.social-links .icon {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+  stroke: none;
+}
+
+/* Footer - minimal */
+footer.container {
+  margin-top: 3rem;
+}
+
+footer.container hr {
+  display: none;
+}
+
+/* Code blocks */
+.highlight {
+  border-radius: var(--pico-border-radius);
+  margin: 1.5rem 0;
+}
+
+.highlight pre {
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 0;
+}
+
+/* Inline code */
+code:not(pre code) {
+  background: var(--pico-code-background-color);
+  padding: 0.15rem 0.4rem;
+  border-radius: var(--pico-border-radius);
+  font-size: 0.9em;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 2px solid var(--pico-muted-border-color);
+  padding: 0.5rem 1.5rem;
+  margin: 1.5rem 0;
+  color: var(--pico-color);
+}
+
+/* Tag styling */
+.tag {
+  color: var(--pico-color);
+  padding: 0;
+  font-size: 0.85rem;
+  margin-left: 0.15rem;
+  text-decoration: none;
+}
+
+.tag:hover {
+  color: var(--teal);
+}
+
+/* Icon styling */
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.1em;
+  fill: currentColor;
+  stroke: none;
+}
+
+/* Tag icons */
+.tag .icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.1em;
+  fill: currentColor;
+  stroke: none;
+}
+
+/* Reveal.js presentation overrides */
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  text-transform: none;
+  font-weight: 600;
+}
+
+.reveal pre {
+  width: 100%;
+  font-size: 0.55em;
+  box-shadow: none;
+}
+
+.reveal .highlight {
+  border-radius: var(--pico-border-radius);
+}
+
+.reveal .highlight pre {
+  background: transparent;
+  box-shadow: none;
+  margin: 0;
+}

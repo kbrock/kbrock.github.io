@@ -1,3 +1,0 @@
-- Brett Victor: [inventing on principal](https://vimeo.com/906418692)
-- Brett Victor: [Thinking the unthinkable thought](https://vimeo.com/67076984)
-- Brett Victor: [stop drawing with dead fish](https://vimeo.com/64895205)

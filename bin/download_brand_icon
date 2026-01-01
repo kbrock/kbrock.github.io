@@ -1,0 +1,9 @@
+#!/bin/bash
+# Download a brand icon from Simple Icons
+# Usage: bin/download_brand_icon ruby github swift
+
+dir="$(dirname "$0")/../_icons"
+
+for name in "$@"; do
+  curl -sf "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/${name}.svg" -o "${dir}/${name}.svg" && echo "Downloaded: ${name}" || echo "Failed: ${name}"
+done

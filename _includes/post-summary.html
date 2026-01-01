@@ -1,15 +1,11 @@
----
-layout: default
----
-{% capture icons_path %}{% ministamp _assets/icons.svg /assets/icons.svg %}{% endcapture %}
 <article>
   <header>
-    <h1>{{ page.title }}</h1>
+    <h2><a href="{{ include.post.url | relative_url }}">{{ include.post.title }}</a></h2>
     <p>
-      <time datetime="{{ page.date | date_to_xmlschema }}">
-        {{ page.date | date: "%B %d, %Y" }}
+      <time datetime="{{ include.post.date | date_to_xmlschema }}">
+        {{ include.post.date | date: "%B %d, %Y" }}
       </time>
-      {% for tag in page.tags %}
+      {% for tag in include.post.tags %}
         {% assign tag_icon = site.data.tag_icons[tag] | default: "heart" %}
         <a href="{{ '/tags/' | append: tag | append: '/' | relative_url }}" class="tag" title="{{ tag }}">
           <svg class="icon"><use href="{{ icons_path }}#icon-{{ tag_icon }}"></use></svg>
@@ -17,6 +13,7 @@ layout: default
       {% endfor %}
     </p>
   </header>
-  
-  {{ content }}
+  {% if include.post.excerpt %}
+    {{ include.post.excerpt }}
+  {% endif %}
 </article>

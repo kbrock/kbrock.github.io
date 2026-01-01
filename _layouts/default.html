@@ -1,3 +1,4 @@
+{% capture icons_path %}{% ministamp _assets/icons.svg /assets/icons.svg %}{% endcapture %}
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
@@ -5,15 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
 
-  <link rel="stylesheet" href="{% ministamp _assets/pico-2.0.6.css assets/pico.css %}">
-  <link rel="stylesheet" href="{% ministamp _assets/custom.css assets/custom.css %}">
-  <link rel="stylesheet" href="{% ministamp _assets/syntax.css assets/syntax.css %}">
+  <link rel="stylesheet" href="{{ '/assets/css/pico-2.0.6.css' | relative_url }}">
+  <link rel="stylesheet" href="{% ministamp _assets/css/theme.css /assets/css/theme.css %}">
+  <link rel="stylesheet" href="{% ministamp _assets/css/syntax.css /assets/css/syntax.css %}">
 
   {% seo %}
   {% feed_meta %}
 </head>
 <body>
-  {% include icons.svg %}
   {% include header.html %}
 
   <main class="container">

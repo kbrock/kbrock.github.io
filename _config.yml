@@ -22,6 +22,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll/minibundle
 
 # Sass
 sass:
@@ -32,8 +33,10 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
+  - CLAUDE.md
+  - TODO.md
   - spec.md
-  - _archive
+  - bin
   - vendor
   - .bundle
 

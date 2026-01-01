@@ -1,0 +1,70 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Builds SVG sprite from individual icon files in _icons/
+#
+# Usage: ruby scripts/build_icons.rb
+#
+# Add SVG files to _icons/ (from Heroicons, hand-drawn, anywhere)
+# Script combines them into _includes/icons.svg as a sprite
+# Reference in templates with: {% include icon.html name="icon-name" %}
+
+require 'fileutils'
+
+ICONS_DIR = File.expand_path("../_icons", __dir__)
+SPRITE_OUTPUT = File.expand_path("../_assets/icons.svg", __dir__)
+
+def svg_to_symbol(icon_name, svg_content)
+  # Extract viewBox from original SVG
+  viewbox = svg_content[/viewBox="([^"]*)"/, 1] || "0 0 24 24"
+  
+  # Extract path content, normalize for sprite
+  inner = svg_content
+    .gsub(/<\?xml[^>]*\?>\s*/m, '')
+    .gsub(/<svg[^>]*>\s*/m, '')
+    .gsub(/\s*<\/svg>\s*/m, '')
+    .gsub(/fill="#[^"]*"/, 'fill="currentColor"')  # Replace hardcoded fills
+    .gsub(/\s+/, ' ')
+    .strip
+
+  # Use fill="currentColor" for solid icons (Simple Icons style)
+  %Q{  <symbol id="icon-#{icon_name}" viewBox="#{viewbox}">#{inner}</symbol>}
+end
+
+def build_sprite
+  symbols = []
+
+  Dir.glob(File.join(ICONS_DIR, "*.svg")).sort.each do |file|
+    icon_name = File.basename(file, ".svg")
+    svg_content = File.read(file)
+    symbols << svg_to_symbol(icon_name, svg_content)
+    puts "  + #{icon_name}"
+  end
+
+  <<~SPRITE
+    <svg xmlns="http://www.w3.org/2000/svg">
+    #{symbols.join("\n")}
+    </svg>
+  SPRITE
+end
+
+# Main
+puts "Building sprite from _icons/..."
+
+unless Dir.exist?(ICONS_DIR)
+  puts "Creating _icons/ directory..."
+  FileUtils.mkdir_p(ICONS_DIR)
+end
+
+if Dir.glob(File.join(ICONS_DIR, "*.svg")).empty?
+  puts "No SVG files in _icons/ - add some icons first"
+  puts "Example: curl -o _icons/heart.svg https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/24/outline/heart.svg"
+  exit 0
+end
+
+sprite = build_sprite
+
+FileUtils.mkdir_p(File.dirname(SPRITE_OUTPUT))
+File.write(SPRITE_OUTPUT, sprite)
+puts "\nWrote: #{SPRITE_OUTPUT}"
+puts "Use icons with: {% include icon.html name=\"icon-name\" %}"

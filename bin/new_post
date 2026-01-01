@@ -1,0 +1,19 @@
+#!/bin/bash
+# Create a new post
+# Usage: bin/new_post My Post Title
+
+dir="$(dirname "$0")/../_posts"
+date=$(date +%Y-%m-%d)
+title="$*"
+slug=$(echo "$title" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+file="${dir}/${date}-${slug}.md"
+
+cat > "$file" << EOF
+---
+title: ${title}
+tags: []
+---
+
+EOF
+
+echo "Created: $file"
