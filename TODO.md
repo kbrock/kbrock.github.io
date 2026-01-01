@@ -26,5 +26,8 @@ Purpose: Active tasks and future ideas.
 
 - [ ] Presentation and post from same content
 - [ ] Stimulus.js for forms/interactivity
-- [ ] Liquid tags for icons: `{% icon ruby %}`, `{% tag ruby %}`
-- [ ] Markdown icon references: `![ruby]` with `[ruby]: /assets/icon.svg#icon-ruby`
+- [ ] Liquid tags for icons: `{% icon ruby %}`, `{% tag ruby [Alt Text]%}`
+  - so `{%tag home children %}` outputs `<a href="/tags/home"><icon home>chidren</a>`
+- [ ] Markdown icon references: `![ruby]` + `[ruby]: /assets/icon.svg#icon-ruby`
+  - or maybe that is a markdown processor (like GitHub Flavored Markdown)
+  - also revist code that made the presentation that replaced full with an abreviation.

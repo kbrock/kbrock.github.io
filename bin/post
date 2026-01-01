@@ -1,0 +1,43 @@
+#!/bin/bash
+# Create a new post
+# Usage: bin/post My Post Title --tag ruby --tag ai
+
+dir="$(dirname "$0")/../_posts"
+date=$(date +%Y-%m-%d)
+tags=()
+title_words=()
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --tag|-t)
+      tags+=("$2")
+      shift 2
+      ;;
+    *)
+      title_words+=("$1")
+      shift
+      ;;
+  esac
+done
+
+title="${title_words[*]}"
+slug=$(echo "$title" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+file="${dir}/${date}-${slug}.md"
+
+# Format tags array
+if [[ ${#tags[@]} -eq 0 ]]; then
+  tags_line="tags: []"
+else
+  tags_line="tags: [$(IFS=,; echo "${tags[*]}" | sed 's/,/, /g')]"
+fi
+
+cat > "$file" << EOF
+---
+title: ${title}
+${tags_line}
+---
+
+EOF
+
+echo "Created: $file"

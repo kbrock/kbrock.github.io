@@ -1,5 +1,5 @@
-title: thebrocks.net
-description: Writing about Ruby, Swift, AI, and Health
+title: Sparks & Stories
+description: Sometimes how you got here matters
 url: "https://thebrocks.net"
 baseurl: ""
 
@@ -40,6 +40,12 @@ exclude:
   - vendor
   - .bundle
 
+# Collections
+collections:
+  sparks:
+    output: true
+    permalink: /sparks/:name/
+
 # Default front matter
 defaults:
   - scope:
@@ -47,3 +53,8 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+  - scope:
+      path: ""
+      type: "sparks"
+    values:
+      layout: "spark"

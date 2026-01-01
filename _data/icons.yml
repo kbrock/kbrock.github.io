@@ -1,6 +1,7 @@
 # Icon attribution
 # Add entries here when adding icons to _icons/
 
+# UI icons (Heroicons solid)
 code-bracket:
   source: Heroicons
   url: https://heroicons.com
@@ -20,3 +21,65 @@ home:
   source: Heroicons
   url: https://heroicons.com
   license: MIT
+
+# Brand icons (Simple Icons)
+claude:
+  source: Simple Icons
+  url: https://simpleicons.org
+  license: CC0 1.0
+
+facebook:
+  source: Simple Icons
+  url: https://simpleicons.org
+  license: CC0 1.0
+
+github:
+  source: Simple Icons
+  url: https://simpleicons.org
+  license: CC0 1.0
+
+ibm:
+  source: Simple Icons
+  url: https://simpleicons.org
+  license: CC0 1.0
+
+instagram:
+  source: Simple Icons
+  url: https://simpleicons.org
+  license: CC0 1.0
+
+jekyll:
+  source: Simple Icons
+  url: https://simpleicons.org
+  license: CC0 1.0
+
+linkedin:
+  source: Simple Icons
+  url: https://simpleicons.org
+  license: CC0 1.0
+
+manageiq:
+  source: Simple Icons
+  url: https://simpleicons.org
+  license: CC0 1.0
+
+redhat:
+  source: Simple Icons
+  url: https://simpleicons.org
+  license: CC0 1.0
+
+ruby:
+  source: Simple Icons
+  url: https://simpleicons.org
+  license: CC0 1.0
+
+swift:
+  source: Simple Icons
+  url: https://simpleicons.org
+  license: CC0 1.0
+
+twitter:
+  source: Simple Icons
+  url: https://simpleicons.org
+  license: CC0 1.0
+  note: Downloaded as x.svg (rebranded logo)

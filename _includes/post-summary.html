@@ -6,7 +6,7 @@
         {{ include.post.date | date: "%B %d, %Y" }}
       </time>
       {% for tag in include.post.tags %}
-        {% assign tag_icon = site.data.tag_icons[tag] | default: "heart" %}
+        {% assign tag_icon = site.data.tags[tag].icon | default: "heart" %}
         <a href="{{ '/tags/' | append: tag | append: '/' | relative_url }}" class="tag" title="{{ tag }}">
           <svg class="icon"><use href="{{ icons_path }}#icon-{{ tag_icon }}"></use></svg>
         </a>

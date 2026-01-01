@@ -1,0 +1,13 @@
+---
+layout: default
+title: Sparks
+---
+
+<h1>Sparks</h1>
+<p>Raw thoughts. Half-baked ideas. The seeds that might grow into stories.</p>
+
+{% assign sparks = site.sparks | sort: "date" | reverse %}
+
+{% for spark in sparks %}
+  {% include spark-summary.html spark=spark %}
+{% endfor %}

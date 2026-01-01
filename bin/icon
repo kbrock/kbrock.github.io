@@ -1,0 +1,153 @@
+#!/usr/bin/env ruby
+# Download an icon and add metadata
+#
+# Usage:
+#   bin/icon heart              # Heroicon (default)
+#   bin/icon --brand ruby       # Simple Icons (brand)
+#   bin/icon --brand ruby --tag ruby  # Also create tag entry
+
+require 'fileutils'
+require 'net/http'
+require 'uri'
+require 'yaml'
+
+ROOT = File.expand_path('..', __dir__)
+ICONS_DIR = File.join(ROOT, '_icons')
+ICONS_YML = File.join(ROOT, '_data', 'icons.yml')
+TAGS_YML = File.join(ROOT, '_data', 'tags.yml')
+TAGS_DIR = File.join(ROOT, 'tags')
+
+SOURCES = {
+  hero: {
+    url: 'https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/24/solid/%s.svg',
+    source: 'Heroicons',
+    site: 'https://heroicons.com',
+    license: 'MIT'
+  },
+  brand: {
+    url: 'https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/%s.svg',
+    source: 'Simple Icons',
+    site: 'https://simpleicons.org',
+    license: 'CC0 1.0'
+  }
+}
+
+def download_icon(name, type)
+  path = File.join(ICONS_DIR, "#{name}.svg")
+  
+  if File.exist?(path)
+    warn "Warning: #{name}.svg already exists, skipping download"
+    return false
+  end
+
+  source = SOURCES[type]
+  url = URI(source[:url] % name)
+  
+  response = Net::HTTP.get_response(url)
+  if response.is_a?(Net::HTTPSuccess)
+    File.write(path, response.body)
+    puts "Downloaded: #{name}.svg"
+    true
+  else
+    warn "Failed to download: #{name}"
+    false
+  end
+end
+
+def add_icon_metadata(name, type)
+  source = SOURCES[type]
+  icons = File.exist?(ICONS_YML) ? YAML.load_file(ICONS_YML) || {} : {}
+  
+  return if icons.key?(name)
+  
+  icons[name] = {
+    'source' => source[:source],
+    'url' => source[:site],
+    'license' => source[:license]
+  }
+  
+  # Sort and write
+  sorted = icons.sort.to_h
+  File.write(ICONS_YML, yaml_header + sorted.map { |k, v| yaml_entry(k, v) }.join("\n"))
+  puts "Added to icons.yml: #{name}"
+end
+
+def add_tag(name, icon_name)
+  tags = File.exist?(TAGS_YML) ? YAML.load_file(TAGS_YML) || {} : {}
+  
+  unless tags.key?(name)
+    tags[name] = { 'icon' => icon_name }
+    sorted = tags.sort.to_h
+    File.write(TAGS_YML, "# Tag metadata\n\n" + sorted.map { |k, v| tag_yaml_entry(k, v) }.join("\n"))
+    puts "Added to tags.yml: #{name}"
+  end
+  
+  # Create tag page
+  tag_file = File.join(TAGS_DIR, "#{name}.md")
+  unless File.exist?(tag_file)
+    File.write(tag_file, <<~MD)
+      ---
+      layout: tag
+      tag: #{name}
+      permalink: /tags/#{name}/
+      ---
+    MD
+    puts "Created: tags/#{name}.md"
+  end
+end
+
+def yaml_header
+  "# Icon attribution\n\n"
+end
+
+def yaml_entry(name, data)
+  lines = ["#{name}:"]
+  lines << "  source: #{data['source']}"
+  lines << "  url: #{data['url']}"
+  lines << "  license: #{data['license']}"
+  lines << "  note: #{data['note']}" if data['note']
+  lines.join("\n") + "\n"
+end
+
+def tag_yaml_entry(name, data)
+  lines = ["#{name}:"]
+  lines << "  title: #{data['title']}" if data['title']
+  lines << "  icon: #{data['icon']}" if data['icon']
+  lines << "  description: #{data['description']}" if data['description']
+  lines.join("\n") + "\n"
+end
+
+# Parse arguments
+type = :hero
+icons = []
+tag_name = nil
+
+args = ARGV.dup
+while arg = args.shift
+  case arg
+  when '--brand', '-b'
+    type = :brand
+  when '--tag', '-t'
+    tag_name = args.shift
+  else
+    icons << arg
+  end
+end
+
+if icons.empty?
+  puts "Usage: bin/icon [--brand] [--tag NAME] ICON..."
+  puts "  --brand, -b    Download from Simple Icons (default: Heroicons)"
+  puts "  --tag, -t NAME Create tag entry using this icon"
+  exit 1
+end
+
+icons.each do |name|
+  download_icon(name, type)
+  add_icon_metadata(name, type)
+  add_tag(tag_name || name, name) if tag_name || icons.length == 1 && ARGV.include?('--tag')
+end
+
+# Handle --tag with single icon (tag name defaults to icon name)
+if tag_name
+  add_tag(tag_name, icons.first)
+end

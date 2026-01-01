@@ -1,0 +1,43 @@
+---
+layout: default
+---
+{% capture icons_path %}{% ministamp _assets/icons.svg /assets/icons.svg %}{% endcapture %}
+{% assign spark_name = page.name | replace: ".md", "" | split: "-" | slice: 3, 100 | join: " " %}
+<article>
+  <header>
+    <h1>{{ page.title | default: spark_name | capitalize }}</h1>
+    <p>
+      <time datetime="{{ page.date | date_to_xmlschema }}">
+        {{ page.date | date: "%B %d, %Y" }}
+      </time>
+      {% if page.author %}
+        <span class="author">by {{ page.author }}</span>
+      {% endif %}
+      {% for tag in page.tags %}
+        {% assign tag_icon = site.data.tags[tag].icon | default: "heart" %}
+        <a href="{{ '/tags/' | append: tag | append: '/' | relative_url }}" class="tag" title="{{ tag }}">
+          <svg class="icon"><use href="{{ icons_path }}#icon-{{ tag_icon }}"></use></svg>
+        </a>
+      {% endfor %}
+    </p>
+  </header>
+  
+  {{ content }}
+
+  {% if page.see-also %}
+  <footer>
+    <h3>See also</h3>
+    <ul>
+      {% for ref in page.see-also %}
+        {% assign spark = site.sparks | where_exp: "s", "s.name contains ref" | first %}
+        {% if spark %}
+          {% assign ref_name = spark.name | replace: ".md", "" | split: "-" | slice: 3, 100 | join: " " %}
+          <li><a href="{{ spark.url | relative_url }}">{{ spark.title | default: ref_name | capitalize }}</a></li>
+        {% else %}
+          <li>{{ ref | replace: "-", " " | capitalize }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </footer>
+  {% endif %}
+</article>
