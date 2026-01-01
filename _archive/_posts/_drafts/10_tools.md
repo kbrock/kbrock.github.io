@@ -9,7 +9,6 @@
 - tech: presentation resolve, angular, lua/phone
 - view:
   + pamphlet, comic, book
-  + [wordsmith][] for book:
   + pdf, kindle
   + presentation
   + chatterbot, twilio, game
@@ -17,10 +16,7 @@
   + website
   + dvd / youtube (ala dragon's lair)
   + roguelike gain
-  + greenscreen.io
 - view: youtube, user modifies timeline
-
-[wordsmith]: https://github.com/tractical/wordsmith
 
 pure tech:
 

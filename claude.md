@@ -119,12 +119,22 @@ cd _icons && ../scripts/fetch_heroicon heart
 - Max one new technology per post
 - Max one new category of metadata per post
 
+## Past Goals (2014)
+
+Original deliverables for a presentation workflow project:
+- A workflow for moving ideas from concept to a presentation
+- A post to describe each of the workflow steps
+- A list of tools for each of the workflow steps
+- A classification scheme to group posts together
+- Tools for expressing ideas (e.g. graphs, powerpoints, prose)
+- Presentations
+
 ## Future Ideas
 
 - **Mermaid diagrams**: Inline flowcharts in markdown (see `_archive/_posts/_drafts/00_flow.md` for old dot syntax experiments)
 - **D3 visualizations**: Simplify old complex JS approach, possibly with AI help
 - **Draft inbox**: Single document for half-baked ideas (like old `_archive/_posts/_drafts/000_inbox.md`)
-- **Presentation ↔ Post**: Same content, different layouts?
+- **Presentation ↔ Post**: Same content, different layouts? (one being a presentation and the other a blog post)
 
 ## Reveal.js Presentations
 
