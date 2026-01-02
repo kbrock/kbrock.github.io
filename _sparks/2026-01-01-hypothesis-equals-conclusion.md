@@ -1,10 +1,10 @@
 ---
+title: Hypothesis Equals Conclusion
 date: 2026-01-01
 sparked-by:
-  - front-load-your-point
-  - preconceptions-shape-stories
+- front-load-your-point
+- preconceptions-shape-stories
 ---
-
 A hypothesis is a conclusion with different rhetorical position.
 
 - Hypothesis: "Here's what I think. Let me show you why."

@@ -1,23 +1,13 @@
 <header class="container">
   <hgroup>
     <h1><a href="{{ '/about' | relative_url }}">{{ site.author.name }}</a></h1>
-    <p>I love my wife, my kids, and <a href="{{ '/tags/ruby' | relative_url }}"><svg class="icon"><use href="{{ icons_path }}#icon-ruby"></use></svg> ruby</a>.</p>
+    <p>I love my wife, my kids, and {% tag ruby ruby %}.</p>
   </hgroup>
   <nav class="social-links">
-    <a href="https://github.com/{{ site.author.github }}" title="GitHub" aria-label="GitHub">
-      <svg class="icon"><use href="{{ icons_path }}#icon-github"></use></svg>
-    </a>
-    <a href="https://linkedin.com/{{ site.author.linkedin }}" title="LinkedIn" aria-label="LinkedIn">
-      <svg class="icon"><use href="{{ icons_path }}#icon-linkedin"></use></svg>
-    </a>
-    <a href="https://instagram.com/{{ site.author.instagram }}" title="Instagram" aria-label="Instagram">
-      <svg class="icon"><use href="{{ icons_path }}#icon-instagram"></use></svg>
-    </a>
-    <a href="https://twitter.com/{{ site.author.twitter }}" title="Twitter" aria-label="Twitter">
-      <svg class="icon"><use href="{{ icons_path }}#icon-twitter"></use></svg>
-    </a>
-    <a href="https://facebook.com/{{ site.author.facebook }}" title="Facebook" aria-label="Facebook">
-      <svg class="icon"><use href="{{ icons_path }}#icon-facebook"></use></svg>
-    </a>
+    <a href="https://github.com/{{ site.author.github }}" title="GitHub" aria-label="GitHub">{% icon github %}</a>
+    <a href="https://linkedin.com/{{ site.author.linkedin }}" title="LinkedIn" aria-label="LinkedIn">{% icon linkedin %}</a>
+    <a href="https://instagram.com/{{ site.author.instagram }}" title="Instagram" aria-label="Instagram">{% icon instagram %}</a>
+    <a href="https://twitter.com/{{ site.author.twitter }}" title="Twitter" aria-label="Twitter">{% icon twitter %}</a>
+    <a href="https://facebook.com/{{ site.author.facebook }}" title="Facebook" aria-label="Facebook">{% icon facebook %}</a>
   </nav>
 </header>

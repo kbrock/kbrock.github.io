@@ -26,21 +26,32 @@ Templates: `_posts/_templates/` and `_sparks/_templates/`
 
 ## Asset Fingerprinting
 
-CSS and icons are fingerprinted using jekyll-minibundle's `ministamp` tag.
+CSS and icons are fingerprinted using `_plugins/fingerprint.rb`.
 
-Use absolute paths with leading slash: `/assets/css/theme.css` not `assets/css/theme.css`.
+Configuration in `_config.yml`:
+
+    fingerprint:
+      paths:
+        - _assets/css/*.css
+        - _assets/*.svg
+
+Usage:
+
+    {{ "/assets/css/theme.css" | fingerprint }}
+
+Use absolute paths with leading slash.
 
 ## Layouts
 
-| Layout       | Extends | Notes                            |
-| ------------ | ------- | -------------------------------- |
-| default.html | -       | Base layout, sets icons_path     |
-| post.html    | default | Blog posts                       |
-| spark.html   | default | Sparks with sparked-by footer      |
-| tag.html     | default | Tag listing pages                |
-| reveal.html  | -       | Standalone, sets own icons_path  |
+| Layout       | Extends | Notes                       |
+| ------------ | ------- | --------------------------- |
+| default.html | -       | Base layout                 |
+| post.html    | default | Blog posts                  |
+| spark.html   | default | Sparks with sparked-by footer |
+| tag.html     | default | Tag listing pages           |
+| reveal.html  | -       | Standalone for presentations |
 
-Note: reveal.html does not extend default.html. Changes to head, CSS includes, or icons_path in one may need to be mirrored in the other.
+Note: reveal.html does not extend default.html. Changes to head or CSS includes may need to be mirrored in both.
 
 ## Includes
 
@@ -67,11 +78,17 @@ Reveal.js mapping in :root:
 
 ## Icons
 
-icons.svg is an external file (not inline). The `ministamp` tag generates the fingerprinted path, and we capture it into a variable so includes can use it:
+Individual SVGs in `_icons/` are combined into `_assets/icons.svg` sprite by `bin/build_icons`.
 
-    {% capture icons_path %}{% ministamp _assets/icons.svg /assets/icons.svg %}{% endcapture %}
+Use liquid tags/filters from `_plugins/icon_tag.rb`:
 
-This must be done in each standalone layout (default.html, reveal.html). Includes like post-summary.html expect `icons_path` to exist.
+    {% icon ruby %}                    # SVG icon
+    {% tag ruby %}                     # Link with icon
+    {% tag ruby Ruby Programming %}    # Link with icon and label
+    {{ tag_var | tag_link }}           # For use in loops
+    {{ icon_name | icon }}             # For use with variables
+
+After adding icons to `_icons/`, run `bin/build_icons` to rebuild the sprite.
 
 ## Notes
 

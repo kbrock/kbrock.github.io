@@ -5,15 +5,10 @@
       <time datetime="{{ include.post.date | date_to_xmlschema }}">
         {{ include.post.date | date: "%B %d, %Y" }}
       </time>
-      {% for tag in include.post.tags %}
-        {% assign tag_icon = site.data.tags[tag].icon | default: "heart" %}
-        <a href="{{ '/tags/' | append: tag | append: '/' | relative_url }}" class="tag" title="{{ tag }}">
-          <svg class="icon"><use href="{{ icons_path }}#icon-{{ tag_icon }}"></use></svg>
-        </a>
-      {% endfor %}
+      {%- for tag in include.post.tags %}{{ tag | tag_link }}{%- endfor %}
     </p>
   </header>
-  {% if include.post.excerpt %}
-    {{ include.post.excerpt }}
-  {% endif %}
+  {%- if include.post.excerpt %}
+  {{ include.post.excerpt }}
+  {%- endif %}
 </article>

@@ -22,11 +22,16 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll/minibundle
 
 # Sass
 sass:
   style: compressed
+
+# Fingerprinting
+fingerprint:
+  paths:
+    - _assets/css/*.css
+    - _assets/*.svg
 
 # Exclude from build
 exclude:

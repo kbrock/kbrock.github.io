@@ -1,17 +1,16 @@
-{% capture icons_path %}{% ministamp _assets/icons.svg /assets/icons.svg %}{% endcapture %}
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <title>{%- if page.title %}{{ page.title }} | {% endif -%}{{ site.title }}</title>
 
   <link rel="stylesheet" href="{{ '/assets/css/pico-2.0.6.css' | relative_url }}">
-  <link rel="stylesheet" href="{% ministamp _assets/css/theme.css /assets/css/theme.css %}">
-  <link rel="stylesheet" href="{% ministamp _assets/css/syntax.css /assets/css/syntax.css %}">
+  <link rel="stylesheet" href="{{ '/assets/css/theme.css' | fingerprint }}">
+  <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | fingerprint }}">
 
-  {% seo %}
-  {% feed_meta %}
+  {%- seo %}
+  {%- feed_meta %}
 </head>
 <body>
   {% include header.html %}

@@ -1,10 +1,10 @@
 ---
+title: Translation Not Simplification
 date: 2026-01-01
 sparked-by:
-  - linear-vs-pattern-thinking
-  - show-the-journey
+- linear-vs-pattern-thinking
+- show-the-journey
 ---
-
 When I share from the problem perspective, people get confused and distracted and can't follow. So I need to translate this into more linear thoughts.
 
 A story is not laid out in the same manner that the inspiration/problems strike.

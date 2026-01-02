@@ -6,6 +6,18 @@ For architecture details, see CLAUDE.md.
 For technology decisions, see spec.md.
 For task tracking, see TODO.md.
 
+## Philosophy
+
+If I wait for every idea to be fully formed, I'll never publish anything.
+
+**Sparks** capture thoughts in motion - raw, half-baked, neurodivergent. They cross-reference each other via `sparked-by:` and patterns emerge from reading them together.
+
+**Stories** (posts) are linearized output with a hypothesis, beginning, middle, end. They pull from sparks but stand alone.
+
+The model: `CAPTURE (sparks) → STORIES (linear output)`
+
+Threads/categories were considered and dropped. Cross-references and tags provide enough organization without adding friction.
+
 ## Quick Start
 
 ```bash
@@ -55,10 +67,26 @@ Templates: `_posts/_templates/` and `_sparks/_templates/`
 ## Adding Icons
 
 ```bash
-bin/icon heart                  # Download UI icon (Heroicons)
-bin/icon --brand ruby           # Download brand icon (Simple Icons)
+bin/icon heart                   # Download UI icon (Heroicons)
+bin/icon --brand ruby            # Download brand icon (Simple Icons)
 bin/icon --brand ruby --tag ruby # Also create tag entry
+bin/build_icons                  # Rebuild sprite after adding icons
 ```
 
-Icons go in `_icons/` . Icon Metadata in `_data/icons.yml`.
-Tags  go in `tags/`.    Tag  Metadata in `_data/tags.yml`.
+Icons go in `_icons/`. Sprite built to `_assets/icons.svg`.
+Icon metadata in `_data/icons.yml`. Tag metadata in `_data/tags.yml`.
+
+Use in templates:
+
+    {% icon ruby %}                    # SVG icon
+    {% tag ruby %}                     # Link with icon
+    {% tag ruby Ruby Programming %}    # Link with icon and label
+    {{ tag_var | tag_link }}           # For use in loops
+    {{ icon_name | icon }}             # For use with variables
+
+## Validation
+
+```bash
+bin/validate           # Check for issues (missing titles, missing tag pages)
+bin/validate --fix     # Auto-fix: add titles from filename, create tag pages
+```

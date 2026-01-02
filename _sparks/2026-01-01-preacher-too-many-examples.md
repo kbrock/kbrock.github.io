@@ -1,16 +1,16 @@
 ---
+title: Preacher Too Many Examples
 date: 2026-01-01
 sparked-by:
-  - audience-adaptive-content
+- audience-adaptive-content
 ---
-
 ## Inspiration
 
 Sometimes in church growing up, the preacher had a narrative and they shared a blurb from the bible. Then they would share an anecdote (parallel example) from their life, like their parishioner or child doing something funny. Unfortunately, sometimes the preacher would include 5+ examples that were the same story in different skin. It was way too much.
 
 ## Observation
 
-I underestimate the audience. But I do know that after I speak with someone, if I include all my examples, it overwhelms them.
+After I speak with someone, if I include all my examples, it overwhelms them.
 
 ## Reaction
 

@@ -1,9 +1,9 @@
 ---
+title: Front Load Your Point
 date: 2026-01-01
 sparked-by:
-  - hypothesis-equals-conclusion
+- hypothesis-equals-conclusion
 ---
-
 ## Observation
 
 These all follow the same pattern:

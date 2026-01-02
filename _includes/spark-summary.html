@@ -1,5 +1,4 @@
-{% assign spark_name = include.spark.name | replace: ".md", "" | split: "-" | slice: 3, 100 | join: " " %}
 <article class="spark-summary">
-  <h2><a href="{{ include.spark.url | relative_url }}">{{ include.spark.title | default: spark_name | capitalize }}</a></h2>
+  <h2><a href="{{ include.spark.url | relative_url }}">{{ include.spark.title }}</a></h2>
   <time datetime="{{ include.spark.date | date_to_xmlschema }}">{{ include.spark.date | date: "%B %Y" }}</time>
 </article>

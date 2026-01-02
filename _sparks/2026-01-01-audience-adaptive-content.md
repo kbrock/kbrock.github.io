@@ -1,10 +1,10 @@
 ---
+title: Audience Adaptive Content
 date: 2026-01-01
 author: claude
 sparked-by:
-  - preacher-too-many-examples
+- preacher-too-many-examples
 ---
-
 ## Hypothesis
 
 Content should adapt to the audience's declared context, not assume one-size-fits-all.

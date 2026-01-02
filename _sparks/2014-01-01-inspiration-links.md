@@ -1,7 +1,7 @@
 ---
+title: Inspiration Links
 date: 2014-01-01
 ---
-
 Always amazed by Brett Victor and some of his ideas.
 A presentation can be a dynamic object much like a guitar is dynamic on stage.
 The trick is to assist you while you express your thoughts.

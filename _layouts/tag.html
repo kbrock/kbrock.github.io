@@ -1,23 +1,19 @@
 ---
 layout: default
 ---
-{% assign tag_data = site.data.tags[page.tag] %}
-{% assign tag_icon = tag_data.icon | default: "heart" %}
-{% assign tag_title = tag_data.title | default: page.tag | capitalize %}
-{% assign tag_description = tag_data.description %}
+{%- assign tag_data = site.data.tags[page.tag] -%}
+{%- assign tag_icon = tag_data.icon | default: "heart" -%}
+{%- assign tag_title = tag_data.title | default: page.tag | capitalize -%}
+{%- assign tag_description = tag_data.description -%}
 
-<h1><svg class="icon"><use href="{{ icons_path }}#icon-{{ tag_icon }}"></use></svg>{{ tag_title }}</h1>
-
-{% if tag_description %}
+<h1>{{ tag_icon | icon }}{{ tag_title }}</h1>
+{%- if tag_description %}
 <p>{{ tag_description }}</p>
-{% endif %}
-
-{% assign tag_posts = site.posts | where_exp: "post", "post.tags contains page.tag" %}
-
-{% for post in tag_posts %}
+{%- endif %}
+{%- assign tag_posts = site.posts | where_exp: "post", "post.tags contains page.tag" -%}
+{%- for post in tag_posts %}
 {% include post-summary.html post=post %}
-{% endfor %}
-
-{% if tag_posts.size == 0 %}
+{%- endfor %}
+{%- if tag_posts.size == 0 %}
 <p>No articles with this tag yet.</p>
-{% endif %}
+{%- endif %}

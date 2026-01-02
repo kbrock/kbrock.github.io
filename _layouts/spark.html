@@ -1,43 +1,33 @@
 ---
 layout: default
 ---
-{% capture icons_path %}{% ministamp _assets/icons.svg /assets/icons.svg %}{% endcapture %}
-{% assign default_title = page.name | replace: ".md", "" | split: "-" | slice: 3, 100 | join: " " | capitalize -%}
 <article>
   <header>
-    <h1>{{ page.title | default: default_title | capitalize }}</h1>
+    <h1>{{ page.title }}</h1>
     <p>
       <time datetime="{{ page.date | date_to_xmlschema }}">
         {{ page.date | date: "%B %d, %Y" }}
       </time>
-      {% if page.author %}
-        <span class="author">by {{ page.author }}</span>
-      {% endif %}
-      {% for tag in page.tags %}
-        {% assign tag_icon = site.data.tags[tag].icon | default: "heart" %}
-        <a href="{{ '/tags/' | append: tag | append: '/' | relative_url }}" class="tag" title="{{ tag }}">
-          <svg class="icon"><use href="{{ icons_path }}#icon-{{ tag_icon }}"></use></svg>
-        </a>
-      {% endfor %}
+      {%- if page.author %}<span class="author">by {{ page.author }}</span>{%- endif -%}
+      {%- for tag in page.tags %}{{ tag | tag_link }}{%- endfor %}
     </p>
   </header>
 
   {{ content }}
 
-  {% if page.sparked-by %}
+{%- if page.sparked-by %}
   <footer>
     <h3>See also</h3>
     <ul>
-      {% for ref in page.sparked-by %}
-        {% assign spark = site.sparks | where_exp: "s", "s.name contains ref" | first %}
-        {% if spark %}
-          {% assign ref_name = spark.name | replace: ".md", "" | split: "-" | slice: 3, 100 | join: " " %}
-          <li><a href="{{ spark.url | relative_url }}">{{ spark.title | default: ref_name | capitalize }}</a></li>
-        {% else %}
-          <li>{{ ref | replace: "-", " " | capitalize }}</li>
-        {% endif %}
-      {% endfor %}
+      {%- for ref in page.sparked-by %}
+        {%- assign spark = site.sparks | where_exp: "s", "s.name contains ref" | first -%}
+        {%- if spark %}
+      <li><a href="{{ spark.url | relative_url }}">{{ spark.title }}</a></li>
+        {%- else %}
+      <li>{{ ref | replace: "-", " " | capitalize }}</li>
+        {%- endif %}
+      {%- endfor %}
     </ul>
   </footer>
-  {% endif %}
+  {%- endif %}
 </article>

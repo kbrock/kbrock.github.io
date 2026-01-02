@@ -1,21 +1,14 @@
 ---
 layout: default
 ---
-{% capture icons_path %}{% ministamp _assets/icons.svg /assets/icons.svg %}{% endcapture -%}
-{% assign default_title = page.name | replace: ".md", "" | split: "-" | slice: 3, 100 | join: " " | capitalize -%}
 <article>
   <header>
-    <h1>{{ page.title | default: default_title }}</h1>
+    <h1>{{ page.title }}</h1>
     <p>
       <time datetime="{{ page.date | date_to_xmlschema }}">
         {{ page.date | date: "%B %d, %Y" }}
       </time>
-      {% for tag in page.tags %}
-        {% assign tag_icon = site.data.tag_icons[tag] | default: "heart" %}
-        <a href="{{ '/tags/' | append: tag | append: '/' | relative_url }}" class="tag" title="{{ tag }}">
-          <svg class="icon"><use href="{{ icons_path }}#icon-{{ tag_icon }}"></use></svg>
-        </a>
-      {% endfor %}
+      {%- for tag in page.tags %}{{ tag | tag_link }}{%- endfor %}
     </p>
   </header>
 

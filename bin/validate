@@ -1,0 +1,140 @@
+#!/usr/bin/env ruby
+# Validate site content: tags and titles
+#
+# Usage:
+#   bin/validate           # Check for issues
+#   bin/validate --fix     # Auto-fix missing titles and tag pages
+
+require 'date'
+require 'fileutils'
+require 'yaml'
+
+ROOT = File.expand_path('..', __dir__)
+POSTS_DIR = File.join(ROOT, '_posts')
+SPARKS_DIR = File.join(ROOT, '_sparks')
+TAGS_DIR = File.join(ROOT, 'tags')
+TAGS_YML = File.join(ROOT, '_data', 'tags.yml')
+
+def parse_front_matter(file)
+  content = File.read(file)
+  return nil unless content.start_with?('---')
+
+  parts = content.split(/^---\s*$/, 3)
+  return nil if parts.length < 3
+
+  [YAML.safe_load(parts[1], permitted_classes: [Date, Time]) || {}, parts[2]]
+rescue => e
+  warn "Error parsing #{file}: #{e.message}"
+  nil
+end
+
+def title_from_filename(filename)
+  name = File.basename(filename, '.md')
+  name = name.sub(/^\d{4}-\d{2}-\d{2}-/, '')
+  name.split('-').map(&:capitalize).join(' ')
+end
+
+def content_files(dir)
+  return [] unless Dir.exist?(dir)
+
+  Dir.glob(File.join(dir, '*.md')).reject do |f|
+    f.include?('_templates') || f.include?('_drafts')
+  end
+end
+
+def validate_tags(fix: false)
+  tags_data = File.exist?(TAGS_YML) ? YAML.load_file(TAGS_YML) || {} : {}
+  used_tags = Set.new
+  issues = []
+
+  (content_files(POSTS_DIR) + content_files(SPARKS_DIR)).each do |file|
+    result = parse_front_matter(file)
+    next unless result
+
+    front_matter, = result
+    tags = front_matter['tags'] || []
+    tags.each { |t| used_tags << t }
+  end
+
+  used_tags.each do |tag|
+    tag_page = File.join(TAGS_DIR, "#{tag}.md")
+
+    unless File.exist?(tag_page)
+      issues << "Missing tag page: tags/#{tag}.md"
+      if fix
+        FileUtils.mkdir_p(TAGS_DIR)
+        File.write(tag_page, <<~MD)
+          ---
+          layout: tag
+          tag: #{tag}
+          permalink: /tags/#{tag}/
+          ---
+        MD
+        puts "Created: tags/#{tag}.md"
+      end
+    end
+
+    unless tags_data.key?(tag)
+      issues << "Missing tag in _data/tags.yml: #{tag} (add with: bin/icon --tag #{tag} ICON_NAME)"
+    end
+  end
+
+  issues
+end
+
+def validate_titles(fix: false)
+  issues = []
+
+  (content_files(POSTS_DIR) + content_files(SPARKS_DIR)).each do |file|
+    result = parse_front_matter(file)
+    next unless result
+
+    front_matter, body = result
+    unless front_matter['title']
+      short_path = file.sub(ROOT + '/', '')
+      issues << "Missing title: #{short_path}"
+      if fix
+        add_title_to_file(file, front_matter, body)
+      end
+    end
+  end
+
+  issues
+end
+
+def add_title_to_file(file, front_matter, body)
+  title = title_from_filename(file)
+
+  # Rebuild with title first
+  ordered = { 'title' => title }
+  front_matter.each do |k, v|
+    ordered[k] = v unless k == 'title'
+  end
+
+  # YAML.dump adds "---\n" prefix, so we just append closing delimiter
+  new_content = "#{YAML.dump(ordered)}---#{body}"
+  File.write(file, new_content)
+  puts "Added title: #{File.basename(file)} -> \"#{title}\""
+end
+
+# Parse arguments
+fix = ARGV.include?('--fix') || ARGV.include?('-f')
+
+puts "Validating site content#{fix ? ' (with auto-fix)' : ''}...\n\n"
+
+tag_issues = validate_tags(fix: fix)
+title_issues = validate_titles(fix: fix)
+
+all_issues = tag_issues + title_issues
+
+if all_issues.empty?
+  puts "All validations passed!"
+else
+  unless fix
+    puts "Issues found:"
+    all_issues.each { |issue| puts "  - #{issue}" }
+  end
+  puts "\n#{all_issues.length} issue(s) found"
+  puts "Run with --fix to auto-fix" unless fix
+  exit 1 unless fix
+end

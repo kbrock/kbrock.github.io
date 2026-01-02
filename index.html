@@ -2,11 +2,21 @@
 layout: default
 title: Home
 ---
-{% capture icons_path %}{% ministamp _assets/icons.svg /assets/icons.svg %}{% endcapture %}
+
 {% for post in site.posts %}
 {% include post-summary.html post=post %}
 {% endfor %}
 
-{% if site.posts.size == 0 %}
+{% if site.posts.size == 0 and site.sparks.size == 0 %}
 <p>No articles yet.</p>
+{% endif %}
+
+{% if site.sparks.size > 0 %}
+<h2>Sparks</h2>
+<p>Raw thoughts. Half-baked ideas. The seeds that might grow into stories.</p>
+
+{% assign sparks = site.sparks | sort: "date" | reverse %}
+{% for spark in sparks %}
+  {% include spark-summary.html spark=spark %}
+{% endfor %}
 {% endif %}
