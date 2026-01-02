@@ -1,7 +1,15 @@
 # Icon attribution
-# Add entries here when adding icons to _icons/
 
-# UI icons (Heroicons solid)
+arrow-path-rounded-square:
+  source: Heroicons
+  url: https://heroicons.com
+  license: MIT
+
+claude:
+  source: Simple Icons
+  url: https://simpleicons.org
+  license: CC0 1.0
+
 code-bracket:
   source: Heroicons
   url: https://heroicons.com
@@ -12,22 +20,6 @@ cpu-chip:
   url: https://heroicons.com
   license: MIT
 
-heart:
-  source: Heroicons
-  url: https://heroicons.com
-  license: MIT
-
-home:
-  source: Heroicons
-  url: https://heroicons.com
-  license: MIT
-
-# Brand icons (Simple Icons)
-claude:
-  source: Simple Icons
-  url: https://simpleicons.org
-  license: CC0 1.0
-
 facebook:
   source: Simple Icons
   url: https://simpleicons.org
@@ -37,6 +29,16 @@ github:
   source: Simple Icons
   url: https://simpleicons.org
   license: CC0 1.0
+
+heart:
+  source: Heroicons
+  url: https://heroicons.com
+  license: MIT
+
+home:
+  source: Heroicons
+  url: https://heroicons.com
+  license: MIT
 
 ibm:
   source: Simple Icons

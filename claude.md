@@ -10,6 +10,20 @@ For task tracking, see TODO.md.
 
     source /usr/local/share/chruby/chruby.sh && chruby 3.3.4
 
+## Content Model
+
+Two content types: sparks (raw thoughts) and stories (polished posts).
+
+| Type    | Collection | Layout  | Title Source                     |
+| ------- | ---------- | ------- | -------------------------------- |
+| Spark   | `_sparks`  | spark   | Filename (date prefix stripped)  |
+| Post    | `_posts`   | post    | Front matter `title:`            |
+| Slides  | `_posts`   | reveal  | Front matter `title:`            |
+
+Sparks use `sparked-by:` in front matter for cross-references. Rendered in footer as links.
+
+Templates: `_posts/_templates/` and `_sparks/_templates/`
+
 ## Asset Fingerprinting
 
 CSS and icons are fingerprinted using jekyll-minibundle's `ministamp` tag.
@@ -22,6 +36,7 @@ Use absolute paths with leading slash: `/assets/css/theme.css` not `assets/css/t
 | ------------ | ------- | -------------------------------- |
 | default.html | -       | Base layout, sets icons_path     |
 | post.html    | default | Blog posts                       |
+| spark.html   | default | Sparks with sparked-by footer      |
 | tag.html     | default | Tag listing pages                |
 | reveal.html  | -       | Standalone, sets own icons_path  |
 
@@ -29,11 +44,12 @@ Note: reveal.html does not extend default.html. Changes to head, CSS includes, o
 
 ## Includes
 
-| Include           | Used By              | Notes                         |
-| ----------------- | -------------------- | ----------------------------- |
-| header.html       | default              | Site header with social icons |
-| footer.html       | default              | Site footer                   |
-| post-summary.html | index.html, tag.html | Shared post listing           |
+| Include            | Used By              | Notes                         |
+| ------------------ | -------------------- | ----------------------------- |
+| header.html        | default              | Site header with social icons |
+| footer.html        | default              | Site footer                   |
+| post-summary.html  | index.html, tag.html | Post listing                  |
+| spark-summary.html | sparks.html          | Spark listing (title only)    |
 
 ## CSS Variables
 

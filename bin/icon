@@ -34,7 +34,7 @@ SOURCES = {
 
 def download_icon(name, type)
   path = File.join(ICONS_DIR, "#{name}.svg")
-  
+
   if File.exist?(path)
     warn "Warning: #{name}.svg already exists, skipping download"
     return false
@@ -42,7 +42,7 @@ def download_icon(name, type)
 
   source = SOURCES[type]
   url = URI(source[:url] % name)
-  
+
   response = Net::HTTP.get_response(url)
   if response.is_a?(Net::HTTPSuccess)
     File.write(path, response.body)
@@ -57,15 +57,15 @@ end
 def add_icon_metadata(name, type)
   source = SOURCES[type]
   icons = File.exist?(ICONS_YML) ? YAML.load_file(ICONS_YML) || {} : {}
-  
+
   return if icons.key?(name)
-  
+
   icons[name] = {
     'source' => source[:source],
     'url' => source[:site],
     'license' => source[:license]
   }
-  
+
   # Sort and write
   sorted = icons.sort.to_h
   File.write(ICONS_YML, yaml_header + sorted.map { |k, v| yaml_entry(k, v) }.join("\n"))
@@ -74,14 +74,14 @@ end
 
 def add_tag(name, icon_name)
   tags = File.exist?(TAGS_YML) ? YAML.load_file(TAGS_YML) || {} : {}
-  
+
   unless tags.key?(name)
     tags[name] = { 'icon' => icon_name }
     sorted = tags.sort.to_h
     File.write(TAGS_YML, "# Tag metadata\n\n" + sorted.map { |k, v| tag_yaml_entry(k, v) }.join("\n"))
     puts "Added to tags.yml: #{name}"
   end
-  
+
   # Create tag page
   tag_file = File.join(TAGS_DIR, "#{name}.md")
   unless File.exist?(tag_file)

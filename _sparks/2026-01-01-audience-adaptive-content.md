@@ -1,20 +1,20 @@
 ---
 date: 2026-01-01
 author: claude
-see-also:
+sparked-by:
   - preacher-too-many-examples
 ---
 
-## Hypothesis (Claude-authored)
+## Hypothesis
 
 Content should adapt to the audience's declared context, not assume one-size-fits-all.
 
 ## Ideas
 
 - Same content, different presentation based on reader's background
-- Reader declares: "I think in tech" vs "I think in business"
-- Examples swap (ruby vs java vs sql)
-- Anecdotes swap (dogs vs cats)
+- Reader declares: "I think in tech" vs "I think in business" - use speed vs ROI
+- Reader declares: "I like ruby" vs "I like javascipt" - swaps examples
+- Reader declares: "I like cats" vs "I like dogs" - swaps anecdotes
 - Live presentations could take votes
 - Pacing could adapt to audience feedback
 

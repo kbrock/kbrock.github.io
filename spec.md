@@ -14,6 +14,7 @@ For task tracking, see TODO.md.
 | Pico.css          | 2.0.6   | https://picocss.com         | CSS framework          |
 | Reveal.js         | 5.1     | https://revealjs.com        | Presentations          |
 | Rouge             | -       | (bundled with Jekyll)       | Syntax highlighting    |
+| kramdown          | -       | (bundled with Jekyll)       | Markdown processor     |
 | jekyll-minibundle | -       | (gem)                       | Asset fingerprinting   |
 | Simple Icons      | -       | https://simpleicons.org     | Brand icons            |
 | Heroicons         | -       | https://heroicons.com       | UI icons (solid)       |
@@ -25,21 +26,25 @@ For task tracking, see TODO.md.
 
 ## Content Types
 
-- **Posts:** Blog entries with tags
-- **Presentations:** Reveal.js slides
+| Type          | Collection | Layout  | Purpose                        |
+| ------------- | ---------- | ------- | ------------------------------ |
+| Sparks        | `_sparks`  | spark   | Raw thoughts, behind-the-curtain |
+| Posts         | `_posts`   | post    | Polished stories               |
+| Presentations | `_posts`   | reveal  | Reveal.js slides               |
 
 ## Decisions
 
 | Decision                      | Choice                                              |
 | ----------------------------- | --------------------------------------------------- |
 | Taxonomy                      | Tags (flat, multiple per post) over categories     |
+| Markdown                      | kramdown (footnotes, abbreviations, attributes)    |
 | Icons                         | SVG sprite, external file, fingerprinted           |
 | Icon style                    | Prefer solid/filled versions                       |
 | Syntax highlighting           | Server-side (Rouge), no client JS                  |
 | Vendor files                  | Local with version in filename (assets/)           |
 | Site CSS                      | Fingerprinted (_assets/)                           |
 | Reveal.js theme               | Map --r-* variables to Pico in theme.css           |
-| Code highlighting theme       | Rouge Monokai duplicated locally in syntax.css     |
+| Diagrams                      | Mermaid (client-side JS) when needed               |
 
 ## Color Palette
 

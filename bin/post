@@ -1,43 +1,104 @@
-#!/bin/bash
-# Create a new post
-# Usage: bin/post My Post Title --tag ruby --tag ai
+#!/usr/bin/env ruby
+# Create a new post, spark, or presentation
+#
+# Usage:
+#   bin/post My Post Title                    # Create a post
+#   bin/post --spark My Spark Title           # Create a spark
+#   bin/post --presentation My Slides         # Create a presentation
+#   bin/post My Post --tag ruby --tag ai      # Post with tags
+#
+# Templates live in _posts/_templates/ and _sparks/_templates/
+# The filename becomes the title (date prefix stripped, hyphens become spaces).
+# Add 'title:' to front matter to override.
 
-dir="$(dirname "$0")/../_posts"
-date=$(date +%Y-%m-%d)
-tags=()
-title_words=()
+require 'fileutils'
+require 'date'
+
+ROOT = File.expand_path('..', __dir__)
+
+CONTENT_TYPES = {
+  post:         { dir: '_posts',  template: '_posts/_templates/post.md' },
+  spark:        { dir: '_sparks', template: '_sparks/_templates/spark.md' },
+  presentation: { dir: '_posts',  template: '_posts/_templates/presentation.md' }
+}
+
+def usage
+  puts <<~USAGE
+    Usage: bin/post [OPTIONS] TITLE...
+
+    Options:
+      --spark, -s         Create a spark in _sparks/
+      --presentation, -p  Create a reveal.js presentation
+      --tag, -t TAG       Add a tag (can be used multiple times)
+      --help, -h          Show this help
+
+    Examples:
+      bin/post My Post Title
+      bin/post --spark Random Thought
+      bin/post --presentation My Talk --tag ruby
+
+    Templates: _posts/_templates/ and _sparks/_templates/
+  USAGE
+end
+
+def slugify(title)
+  title.downcase.gsub(/[^a-z0-9\s-]/, '').gsub(/\s+/, '-')
+end
 
 # Parse arguments
-while [[ $# -gt 0 ]]; do
-  case "$1" in
-    --tag|-t)
-      tags+=("$2")
-      shift 2
-      ;;
-    *)
-      title_words+=("$1")
-      shift
-      ;;
-  esac
-done
+content_type = :post
+tags = []
+title_words = []
 
-title="${title_words[*]}"
-slug=$(echo "$title" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
-file="${dir}/${date}-${slug}.md"
+args = ARGV.dup
+while arg = args.shift
+  case arg
+  when '--spark', '-s'
+    content_type = :spark
+  when '--presentation', '-p'
+    content_type = :presentation
+  when '--tag', '-t'
+    tags << args.shift
+  when '--help', '-h'
+    usage
+    exit 0
+  else
+    title_words << arg
+  end
+end
 
-# Format tags array
-if [[ ${#tags[@]} -eq 0 ]]; then
-  tags_line="tags: []"
-else
-  tags_line="tags: [$(IFS=,; echo "${tags[*]}" | sed 's/,/, /g')]"
-fi
+if title_words.empty?
+  puts "Error: Title required"
+  usage
+  exit 1
+end
 
-cat > "$file" << EOF
----
-title: ${title}
-${tags_line}
----
+title = title_words.join(' ')
+slug = slugify(title)
+date = Date.today.to_s
 
-EOF
+config = CONTENT_TYPES[content_type]
+template_path = File.join(ROOT, config[:template])
+dest_dir = File.join(ROOT, config[:dir])
+dest_file = File.join(dest_dir, "#{date}-#{slug}.md")
 
-echo "Created: $file"
+unless File.exist?(template_path)
+  puts "Error: Template not found: #{template_path}"
+  exit 1
+end
+
+if File.exist?(dest_file)
+  puts "Error: #{dest_file} already exists"
+  exit 1
+end
+
+# Read template and substitute placeholders
+content = File.read(template_path)
+content = content.gsub('{{title}}', title)
+content = content.gsub('{{date}}', date)
+content = content.gsub('{{tags}}', tags.join(', '))
+
+FileUtils.mkdir_p(dest_dir)
+File.write(dest_file, content)
+
+puts "Created: #{dest_file}"

@@ -1,6 +1,6 @@
 ---
 date: 2026-01-01
-see-also:
+sparked-by:
   - summaries-hide-reasoning
   - front-load-your-point
 ---

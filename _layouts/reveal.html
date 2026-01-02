@@ -8,6 +8,9 @@ layout: null
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }} | {{ site.title }}</title>
+{% if page.title -%}
+{% assign default_title = page.name | replace: ".md", "" | split: "-" | slice: 3, 100 | join: " " | capitalize -%}
+  <title>{{ page.title | default: defailt_title }} - {{ site.title }}</title>
 
   <link rel="stylesheet" href="{{ '/assets/css/pico-2.0.6.css' | relative_url }}">
   <link rel="stylesheet" href="{% ministamp _assets/css/theme.css /assets/css/theme.css %}">

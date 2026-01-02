@@ -4,9 +4,9 @@ Purpose: Active tasks and future ideas.
 
 ## Active
 
-- [ ] Test on mobile
-- [ ] Test with dark mode and light mode
 - [ ] Write first real post
+- [ ] Test on mobile
+- [ ] Fix dark mode and light mode (they all show the same)
 
 ## Future Ideas
 
@@ -24,7 +24,6 @@ Purpose: Active tasks and future ideas.
 
 ### Maybe
 
-- [ ] Presentation and post from same content
 - [ ] Stimulus.js for forms/interactivity
 - [ ] Liquid tags for icons: `{% icon ruby %}`, `{% tag ruby [Alt Text]%}`
   - so `{%tag home children %}` outputs `<a href="/tags/home"><icon home>chidren</a>`

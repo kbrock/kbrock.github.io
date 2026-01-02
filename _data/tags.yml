@@ -1,26 +1,44 @@
 # Tag metadata
-# Used by tag pages and post-summary for icons
 
 ai:
   title: AI
-  icon: cpu-chip
-  description: Articles about artificial intelligence and machine learning.
+  icon: claude
+  description: Artificial Intelligence
 
-life:
-  title: Life
+github:
+  title: GitHub
+  icon: github
+  description: GitHub
+
+home:
   icon: home
-  description: Articles about life, projects, and personal endeavors.
-
-ruby:
-  title: Ruby
-  icon: ruby
-  description: Articles about Ruby programming and the Ruby ecosystem.
-
-swift:
-  icon: swift
 
 jekyll:
   icon: jekyll
 
+life:
+  title: Life
+  icon: home
+  description: Life, health, and hobbies
+
+manageiq:
+  icon: manageiq
+
+n+1:
+  icon: arrow-path-rounded-square
+
+ruby:
+  title: Ruby
+  icon: ruby
+  description: Ruby programming
+
+swift:
+  icon: swift
+
+twitter:
+  icon: twitter
+
 website:
+  title: Website
   icon: code-bracket
+  description: Building my website

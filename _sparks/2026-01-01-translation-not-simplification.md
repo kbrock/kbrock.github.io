@@ -1,6 +1,6 @@
 ---
 date: 2026-01-01
-see-also:
+sparked-by:
   - linear-vs-pattern-thinking
   - show-the-journey
 ---

@@ -1,6 +1,6 @@
 ---
 date: 2026-01-01
-see-also:
+sparked-by:
   - hypothesis-equals-conclusion
 ---
 
@@ -14,7 +14,10 @@ If you put the summary (conclusion) of your message/story in the title of the em
 
 In a Churchill essay, you give a hypothesis, give your details, then your conclusion.
 
-A story doesn't have to share the last page, but often if you state the last page to yourself, then the story reads better. Or if nothing else, write down what you wanted the person to get out of it, and then "edit" it trying to ensure that the user gets what you wanted them to get. Chances are, that statement is your hypothesis/conclusion.
+A story doesn't have to share the conclusion up front (the last page), but often if the author actively acknowledges the last page to themself, when going back and editing, then the story reads better.
+Or if nothing else, write down what you wanted the person to get out of it, and then "edit" it trying to ensure that the user gets what you wanted them to get.
+
+Most stories have mini arcs - whether a science paper, novel, short story, email, meeting presentation. Each section often has its own hypothesis-evidence-conclusion structure nested inside the larger one.
 
 ## Pattern
 
