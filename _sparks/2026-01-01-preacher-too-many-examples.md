@@ -3,6 +3,7 @@ title: Preacher Too Many Examples
 date: 2026-01-01
 sparked-by:
 - audience-adaptive-content
+hidden: true
 ---
 ## Inspiration
 

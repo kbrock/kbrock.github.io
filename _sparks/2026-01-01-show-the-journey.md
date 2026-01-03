@@ -4,6 +4,7 @@ date: 2026-01-01
 sparked-by:
 - summaries-hide-reasoning
 - front-load-your-point
+hidden: true
 ---
 I like to see the journey, see the decisions along the way, and then come up with understandings how we did well and not well and tweak how I interpret.
 

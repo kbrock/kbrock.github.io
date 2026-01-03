@@ -3,6 +3,7 @@ title: Summaries Hide Reasoning
 date: 2026-01-01
 sparked-by:
 - show-the-journey
+hidden: true
 ---
 I don't trust summaries. I like to see how people came to the conclusion. Because I'm constantly incorporating new ideas into my model of the world. I like some form of order, and work better when I can create generalized rules.
 

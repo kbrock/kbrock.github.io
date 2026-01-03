@@ -15,7 +15,7 @@ layout: default
 
   {{ content }}
 
-{%- if page.sparked-by %}
+{%- if page.sparked-by and page.sparked-by.size > 0 %}
   <footer>
     <h3>See also</h3>
     <ul>

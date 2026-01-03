@@ -4,6 +4,7 @@ date: 2026-01-01
 sparked-by:
 - common-sense-isnt-common
 - hypothesis-equals-conclusion
+hidden: true
 ---
 When I tell you a story, you are bringing your preconceived notions and experiences into it and will hear a different story than someone else who hears the same story.
 

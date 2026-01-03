@@ -2,7 +2,6 @@
 title: The best html form dsl
 date: 2026-01-01
 tags: [database, ruby]
-sparked-by: []
 ---
 
 ## Inspiration

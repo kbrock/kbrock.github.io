@@ -3,6 +3,7 @@ title: Linear Vs Pattern Thinking
 date: 2026-01-01
 sparked-by:
 - translation-not-simplification
+hidden: true
 ---
 My brain sees interconnected patterns. Others need linear sequences. Neurodivergent thinking isn't wrong, it's unlinearized.
 

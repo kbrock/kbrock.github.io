@@ -3,6 +3,7 @@ title: Front Load Your Point
 date: 2026-01-01
 sparked-by:
 - hypothesis-equals-conclusion
+hidden: true
 ---
 ## Observation
 

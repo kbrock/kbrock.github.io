@@ -3,6 +3,7 @@ title: Common Sense Isnt Common
 date: 2026-01-01
 sparked-by:
 - preconceptions-shape-stories
+hidden: true
 ---
 In all conversations, you share a piece of information, and you hope the other person has the same prejudices/experiences/judgements/common sense/skills and can understand where your story starts.
 

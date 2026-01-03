@@ -15,7 +15,7 @@ title: Home
 <h2>Sparks</h2>
 <p>Raw thoughts. Half-baked ideas. The seeds that might grow into stories.</p>
 
-{% assign sparks = site.sparks | sort: "date" | reverse %}
+{% assign sparks = site.sparks | where_exp:"spark", "spark.hidden != true" | sort: "date" | reverse %}
 {% for spark in sparks %}
   {% include spark-summary.html spark=spark %}
 {% endfor %}

@@ -1,6 +1,7 @@
 ---
 title: Half Baked Never Published
 date: 2026-01-01
+hidden: true
 ---
 If I wait for every idea to be fully formed, I'll never publish anything. Perfectionism is the enemy of progress.
 

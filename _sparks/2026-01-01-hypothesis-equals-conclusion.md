@@ -4,6 +4,7 @@ date: 2026-01-01
 sparked-by:
 - front-load-your-point
 - preconceptions-shape-stories
+hidden: true
 ---
 A hypothesis is a conclusion with different rhetorical position.
 
