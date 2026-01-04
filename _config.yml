@@ -48,8 +48,8 @@ exclude:
 # Collections
 collections:
   sparks:
-    output: true
-    permalink: /sparks/:name/
+    output: false
+    # permalink: /sparks/:name/
 
 # Default front matter
 defaults:

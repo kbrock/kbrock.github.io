@@ -2,12 +2,9 @@
 title: Inspiration Links
 date: 2014-01-01
 ---
-Always amazed by Brett Victor and some of his ideas.
-A presentation can be a dynamic object much like a guitar is dynamic on stage.
-The trick is to assist you while you express your thoughts.
+In [Stop Drawing Dead Fish], Brett Victor explains that a presentation can be a dynamic tool that assists you much like a guitar does on stage. You use it to create music on the fly, improvising or following a rehearsed story/song.
 
-As things evolve (e.g.: industries change, cell phone, ai) you can be deliberate to have that technology make life more humane
+In [Thinking the Unthinkable Thought], he shares that sometimes you need to invent a new language to express new ideas. Much like the Babylonian's introduction of the number 0 had people thinking differently.
 
-- [Inventing on Principle](https://vimeo.com/906418692)
-- [Thinking the Unthinkable Thought](https://vimeo.com/67076984)
-- [Stop Drawing Dead Fish](https://vimeo.com/64895205)
+[Stop Drawing Dead Fish]: https://vimeo.com/64895205
+[Thinking the Unthinkable Thought]: https://vimeo.com/67076984

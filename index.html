@@ -17,6 +17,17 @@ title: Home
 
 {% assign sparks = site.sparks | where_exp:"spark", "spark.hidden != true" | sort: "date" | reverse %}
 {% for spark in sparks %}
-  {% include spark-summary.html spark=spark %}
-{% endfor %}
+  <article>
+      <header>
+        <h2>{{ spark.title }}</h2>
+        <p>
+          <time datetime="{{ page.date | date_to_xmlschema }}">
+            {{ spark.date | date: "%B %d, %Y" }}
+          </time>
+          {%- for tag in spark.tags %}{{ tag | tag_link }}{%- endfor %}
+        </p>
+      </header>
+      {{ spark.content }}
+  </article>
+  {% endfor %}
 {% endif %}

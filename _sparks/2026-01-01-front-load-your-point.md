@@ -1,27 +1,10 @@
 ---
 title: Front Load Your Point
 date: 2026-01-01
-sparked-by:
-- hypothesis-equals-conclusion
-hidden: true
 ---
-## Observation
+In a position paper, aka wedge essay, aka Churchill essay, it states a thesis, backup details, and the thesis again. The purpose of the essay is reiterated.
 
-These all follow the same pattern:
+Sure would be nice if emails, meeting requests, presentations, and other communication did the same.
+Meetings with a proper title and agenda tends to run more smoothly. The goals tend to be accomplished when they are stated, and the attendees can come prepared.
 
-If you create an agenda for a meeting, then you can be more productive and people can be more prepared.
-
-If you put the summary (conclusion) of your message/story in the title of the email, then it can save a bunch of time for the user. They know what you want them to do and read.
-
-In a Churchill essay, you give a hypothesis, give your details, then your conclusion.
-
-A story doesn't have to share the conclusion up front (the last page), but often if the author actively acknowledges the last page to themself, when going back and editing, then the story reads better.
-Or if nothing else, write down what you wanted the person to get out of it, and then "edit" it trying to ensure that the user gets what you wanted them to get.
-
-Most stories have mini arcs - whether a science paper, novel, short story, email, meeting presentation. Each section often has its own hypothesis-evidence-conclusion structure nested inside the larger one.
-
-## Pattern
-
-State your point first. Let the audience know where you're going before you take them there. Respects their time. Helps them follow.
-
-Hypothesis and conclusion are the same thing, just positioned differently. Beginning vs end.
+I find it frustrating when 20 recipients of the email have to spend time summarizing because the 1 author didn't do it properly. Also, it is easier for recipients to act upon the email when the email states the desired action.
